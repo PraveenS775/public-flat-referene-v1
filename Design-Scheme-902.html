@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anuhar Towers · Block B · Flat 902 — Final Design Scheme &amp; Cost Map</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Mono:wght@400;700&display=swap');
+
+  :root{
+    --paper:        #f6f1e7;
+    --paper-deep:   #efe7d8;
+    --ink:          #2b2520;
+    --ink-soft:     #6b5f53;
+    --clay:         #c1582f;
+    --clay-deep:    #9c4220;
+    --moss:         #6f7a52;
+    --line:         #d8cdb9;
+    --card:         #fffdf8;
+    --shadow:       0 18px 40px -22px rgba(43,37,32,.45);
+    --serif: 'Fraunces', serif;
+    --mono: 'Space Mono', monospace;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family: var(--mono);
+    background: var(--paper);
+    color: var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    background-image: radial-gradient(circle at 1px 1px, rgba(43,37,32,.045) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  /* ============ HEADER ============ */
+  header.cover{
+    position:relative;
+    padding: 4.5rem 6vw 3.5rem;
+    border-bottom: 3px solid var(--ink);
+    overflow:hidden;
+    background: linear-gradient(180deg, var(--paper-deep) 0%, var(--paper) 100%);
+  }
+  header.cover::before{
+    content:"";
+    position:absolute;
+    top:-120px; right:-120px;
+    width:380px; height:380px;
+    border:2px dashed var(--clay);
+    border-radius:50%;
+    opacity:.35;
+  }
+  .eyebrow{
+    font-size:.78rem;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color: var(--clay-deep);
+    font-weight:700;
+    margin-bottom:1.2rem;
+    display:flex;
+    align-items:center;
+    gap:.8rem;
+  }
+  .eyebrow::before{
+    content:"";
+    display:inline-block;
+    width:40px; height:2px;
+    background: var(--clay-deep);
+  }
+  h1.title{
+    font-family: var(--serif);
+    font-weight:600;
+    font-size: clamp(2.2rem, 6vw, 4.6rem);
+    line-height:1.04;
+    letter-spacing:-.01em;
+    max-width:20ch;
+  }
+  h1.title em{ font-style:italic; font-weight:300; color: var(--clay); }
+
+  .cover-meta{
+    margin-top:2.2rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:2rem 3rem;
+  }
+  .cover-meta div{ font-size:.82rem; }
+  .cover-meta span{
+    display:block;
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    font-size:.64rem;
+    color: var(--ink-soft);
+    margin-bottom:.3rem;
+  }
+  .cover-meta strong{ font-family: var(--serif); font-size:1.1rem; font-weight:600; }
+
+  .cover-note{
+    margin-top:2.2rem;
+    max-width:680px;
+    font-size:.92rem;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--clay);
+    padding-left:1.1rem;
+  }
+
+  /* ============ NAV ============ */
+  nav.toc{
+    background: var(--ink);
+    color: var(--paper);
+    position: sticky;
+    top:0;
+    z-index:50;
+    border-bottom: 3px solid var(--clay);
+  }
+  .toc-toggle{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:1rem; padding: .85rem 6vw; cursor:pointer;
+    -webkit-tap-highlight-color: transparent; user-select:none;
+  }
+  .toc-toggle h2{ font-family: var(--serif); font-size:1rem; font-weight:600; color: var(--paper); margin:0; }
+  .toc-toggle h2 .num{ color: var(--clay); margin-right:.4rem; }
+  .toc-toggle .chevron{
+    flex:none; width:30px; height:30px; border:1px solid rgba(255,255,255,.25);
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:.9rem; transition: transform .3s ease, background .3s ease;
+  }
+  .toc-body{ max-height:0; overflow:hidden; transition: max-height .35s ease; padding:0 6vw; }
+  #toc-check{ display:none; }
+  #toc-check:checked ~ .toc-body{ max-height:420px; overflow-y:auto; padding-bottom:1.2rem; }
+  #toc-check:checked ~ .toc-toggle .chevron{ transform: rotate(180deg); background: var(--clay); }
+  .toc-grid{ display:flex; flex-wrap:wrap; gap:.5rem .65rem; padding-top:.3rem; }
+  .toc-grid a{
+    display:flex; align-items:center; gap:.5rem; font-size:.74rem; text-decoration:none;
+    color: var(--paper); background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.16);
+    padding:.5rem .85rem; border-radius:999px; transition: all .25s ease; white-space:nowrap;
+  }
+  .toc-grid a:hover{ background: var(--clay); border-color: var(--clay); color: var(--ink); transform: translateY(-2px); }
+  .toc-grid a .step-no{ font-family: var(--serif); font-weight:700; font-size:.9rem; color: var(--clay); }
+  .toc-grid a:hover .step-no{ color: var(--ink); }
+  @media (max-width:640px){
+    .toc-toggle{ padding:.8rem 5vw; }
+    .toc-body{ padding:0 5vw; }
+    .toc-grid a{ font-size:.7rem; padding:.5rem .7rem; }
+  }
+
+  /* ============ MAIN ============ */
+  main{ padding: 0 6vw 6rem; max-width: 1280px; margin: 0 auto; }
+
+  .room{
+    position:relative;
+    padding: 4.5rem 0 0;
+    scroll-margin-top: 130px;
+  }
+  .room:first-of-type{ padding-top: 3.8rem; }
+
+  .room-head{
+    display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+    gap:1rem; margin-bottom:1.8rem;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 1rem;
+  }
+  .room-head h2{
+    font-family: var(--serif); font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+    font-weight:600; line-height:1.1;
+  }
+  .room-head h2 .tag{
+    display:inline-block; font-size:.6rem; letter-spacing:.22em; text-transform:uppercase;
+    color: var(--moss); background: rgba(111,122,82,.12); border:1px solid rgba(111,122,82,.3);
+    border-radius:999px; padding:.3rem .8rem; margin-top:.5rem; vertical-align:middle;
+  }
+  .room-total{
+    text-align:right;
+  }
+  .room-total span{
+    display:block; font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color: var(--ink-soft);
+    margin-bottom:.3rem;
+  }
+  .room-total strong{
+    font-family: var(--serif); font-size:1.9rem; font-weight:700; color: var(--clay-deep);
+  }
+
+  .room-body{
+    display:grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2rem;
+  }
+  @media (max-width: 880px){
+    .room-body{ grid-template-columns: 1fr; }
+  }
+
+  .gallery{ display:grid; gap: .9rem; }
+  .gallery.single{ grid-template-columns: 1fr; }
+  .gallery.double{ grid-template-columns: 1fr 1fr; }
+  .gallery.triple{ grid-template-columns: repeat(3, 1fr); }
+  @media (max-width:620px){
+    .gallery.double, .gallery.triple{ grid-template-columns: 1fr; }
+  }
+
+  figure{
+    margin:0; background: var(--card); border:1px solid var(--line); border-radius:14px;
+    overflow:hidden; box-shadow: var(--shadow); transition: transform .3s ease, box-shadow .3s ease;
+  }
+  figure:hover{ transform: translateY(-3px); box-shadow: 0 24px 48px -22px rgba(43,37,32,.5); }
+  figure .img-frame{
+    display:block; width:100%; min-height:200px; max-height:480px;
+    background: var(--paper-deep); cursor: zoom-in; padding:.5rem;
+  }
+  figure img{ display:block; width:100%; height:100%; max-height:460px; object-fit:contain; }
+  @media (max-width:640px){
+    figure .img-frame{ max-height:65vh; padding:.35rem; }
+    figure img{ max-height:65vh; }
+  }
+  figcaption{
+    font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color: var(--ink-soft);
+    padding:.6rem .9rem; border-top:1px solid var(--line);
+  }
+
+  /* Cost table */
+  .cost-table{
+    background: var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow: var(--shadow); overflow:hidden; align-self:start;
+  }
+  .cost-table .ct-head{
+    background: var(--ink); color: var(--paper); padding:.9rem 1.2rem;
+    font-family: var(--serif); font-size:1rem; font-weight:600;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .cost-table .ct-head .ct-icon{ color: var(--clay); }
+  table{ width:100%; border-collapse:collapse; font-size:.78rem; }
+  table th, table td{ padding:.65rem .9rem; text-align:left; border-bottom:1px solid var(--line); }
+  table th{
+    font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color: var(--ink-soft);
+    background: var(--paper-deep); font-weight:700;
+  }
+  table td.amount{ text-align:right; font-weight:700; white-space:nowrap; }
+  table td.sft{ text-align:right; color: var(--ink-soft); white-space:nowrap; }
+  table tr:last-child td{ border-bottom:none; }
+  table tr.subtotal td{
+    background: var(--paper-deep); font-weight:700; border-top:2px solid var(--ink); border-bottom:none;
+  }
+  table tr.subtotal td.amount{ color: var(--clay-deep); font-size:.9rem; }
+  .ct-note{
+    font-size:.72rem; color: var(--ink-soft); padding:.8rem 1.2rem; border-top:1px solid var(--line);
+    line-height:1.6;
+  }
+
+  /* Brief box under gallery */
+  .brief{
+    background: var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:1.3rem 1.5rem; box-shadow: var(--shadow); margin-top:1rem; position:relative;
+  }
+  .brief::before{
+    content:"WHAT'S BEING BUILT"; position:absolute; top:-11px; left:1.3rem;
+    background: var(--clay); color: var(--paper); font-size:.6rem; letter-spacing:.22em;
+    font-weight:700; padding:.3rem .7rem; border-radius:999px;
+  }
+  .brief ul{ list-style:none; display:flex; flex-direction:column; gap:.45rem; margin-top:.6rem; }
+  .brief li{ font-size:.8rem; padding-left:1.3rem; position:relative; }
+  .brief li::before{ content:"→"; position:absolute; left:0; color: var(--moss); font-weight:700; }
+
+  /* ============ SUMMARY ============ */
+  .summary{
+    margin-top: 5rem; background: var(--ink); color: var(--paper); border-radius:18px;
+    padding: 2.5rem 2.5rem; box-shadow: var(--shadow);
+  }
+  .summary h2{ font-family: var(--serif); font-size:1.8rem; font-weight:600; margin-bottom:1.5rem; }
+  .summary-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem 3rem; }
+  @media (max-width:700px){ .summary-grid{ grid-template-columns: 1fr; } }
+  .summary table{ width:100%; }
+  .summary table th, .summary table td{ border-bottom:1px solid rgba(255,255,255,.12); color: var(--paper); }
+  .summary table th{ background:transparent; color: rgba(246,241,231,.5); }
+  .summary .grand{
+    margin-top:1.5rem; padding-top:1.5rem; border-top:2px solid var(--clay);
+    display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:1rem;
+  }
+  .summary .grand .label{ font-family: var(--serif); font-size:1.3rem; font-weight:600; }
+  .summary .grand .value{ font-family: var(--serif); font-size:2.4rem; font-weight:700; color: var(--clay); }
+  .summary .terms{ font-size:.74rem; color: rgba(246,241,231,.55); margin-top:1.2rem; line-height:1.8; }
+
+  /* ============ FOOTER ============ */
+  footer{ background: var(--ink); color: var(--paper); padding: 3rem 6vw; text-align:center; margin-top:0; }
+  footer .stamp{
+    display:inline-flex; align-items:center; gap:1rem; border:2px solid var(--clay); border-radius:999px;
+    padding:.6rem 1.5rem; font-family:var(--serif); font-size:1rem; font-weight:600; margin-bottom:1rem;
+  }
+  footer .stamp::before, footer .stamp::after{ content:"✦"; color: var(--clay); }
+  footer p{ font-size:.76rem; color: rgba(246,241,231,.6); max-width:600px; margin:.4rem auto 0; line-height:1.7; }
+
+  /* ============ LIGHTBOX ============ */
+  .lightbox{
+    position:fixed; inset:0; background: rgba(43,37,32,.92); display:none;
+    align-items:center; justify-content:center; z-index:1000; padding:2rem; cursor: zoom-out;
+  }
+  .lightbox.active{ display:flex; }
+  .lightbox img{ max-width:100%; max-height:100%; object-fit:contain; border-radius:8px; box-shadow: 0 30px 70px -20px rgba(0,0,0,.6); }
+  .lightbox .lightbox-close{
+    position:absolute; top:1.2rem; right:1.6rem; width:44px; height:44px; border-radius:50%;
+    border:2px solid var(--paper); background: rgba(255,255,255,.08); color: var(--paper);
+    font-size:1.4rem; display:flex; align-items:center; justify-content:center; cursor:pointer; line-height:1;
+  }
+  .lightbox .lightbox-caption{
+    position:absolute; bottom:1.6rem; left:50%; transform:translateX(-50%); color: var(--paper);
+    font-size:.76rem; letter-spacing:.1em; text-transform:uppercase; background: rgba(0,0,0,.35);
+    padding:.5rem 1.2rem; border-radius:999px; max-width:90vw; text-align:center;
+  }
+  @media (max-width:640px){
+    .lightbox{ padding:.8rem; }
+    .lightbox .lightbox-close{ top:.6rem; right:.6rem; width:40px; height:40px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="eyebrow">Final Design Scheme · Cost-Mapped</div>
+  <h1 class="title">Anuhar Towers — Block&nbsp;B, Flat&nbsp;902 <em>Design Scheme &amp; Carpentry Cost Map</em></h1>
+
+  <div class="cover-meta">
+    <div><span>Unit Type</span><strong>2 BHK · 1316 sq.ft Salable</strong></div>
+    <div><span>Quote By</span><strong>Reminiscent Interior Design</strong></div>
+    <div><span>Project ID</span><strong>REM-20260417-5575</strong></div>
+    <div><span>Quote Date</span><strong>08 Jun 2026</strong></div>
+  </div>
+
+  <p class="cover-note">
+    This page pairs each room's <strong>chosen design reference</strong> with the
+    <strong>exact carpentry line items and costs</strong> quoted by Reminiscent Interior Design.
+    Use it to verify scope room-by-room before sign-off — every item, SFT, and amount below is taken
+    directly from the official estimate (Standard finish, before discount).
+  </p>
+</header>
+
+<nav class="toc">
+  <input type="checkbox" id="toc-check">
+  <label class="toc-toggle" for="toc-check">
+    <h2><span class="num">§</span>Room Index — 8 Rooms</h2>
+    <span class="chevron">▾</span>
+  </label>
+  <div class="toc-body">
+    <div class="toc-grid">
+      <a href="#foyer"><span class="step-no">01</span> Foyer — ₹18,516</a>
+      <a href="#living"><span class="step-no">02</span> Living — ₹35,746</a>
+      <a href="#dining"><span class="step-no">03</span> Dining — ₹37,268</a>
+      <a href="#pooja"><span class="step-no">04</span> Pooja — ₹32,715</a>
+      <a href="#kitchen"><span class="step-no">05</span> Kitchen — ₹223,817</a>
+      <a href="#br1"><span class="step-no">06</span> Master Bedroom (BR-1) — ₹221,895</a>
+      <a href="#br2"><span class="step-no">07</span> Kids Room (BR-2) — ₹168,404</a>
+      <a href="#summary"><span class="step-no">08</span> Estimate Summary</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- 01 — FOYER -->
+  <section class="room" id="foyer">
+    <div class="room-head">
+      <h2>Foyer <br><span class="tag">Entry Area</span></h2>
+      <div class="room-total"><span>Room Total</span><strong>₹18,516</strong></div>
+    </div>
+    <div class="room-body">
+      <div>
+        <div class="brief">
+          <ul>
+            <li>Closed shoe rack unit at entry, MR-grade carcass &amp; shutters (16mm), Century Sainik plywood</li>
+            <li>Hettich soft-closure hardware, internal wooden/fabric laminate</li>
+            <li>Attached seater unit on top of / beside the shoe rack for sit-down shoe changing</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cost-table">
+        <div class="ct-head">Carpentry Items <span class="ct-icon">●</span></div>
+        <table>
+          <tr><th>Unit</th><th>Type</th><th>SFT</th><th>Amount</th></tr>
+          <tr><td>Shoe Rack</td><td>Closed Unit</td><td class="sft">7.5</td><td class="amount">₹14,243</td></tr>
+          <tr><td>Seater for Shoe Rack</td><td>Closed Unit</td><td class="sft">2.25</td><td class="amount">₹4,273</td></tr>
+          <tr class="subtotal"><td colspan="3">Foyer Subtotal</td><td class="amount">₹18,516</td></tr>
+        </table>
+        <div class="ct-note">Material: MR Grade plywood (Century Sainik), 6mm back ply, 16mm carcass/shutter · Hardware: Hettich Soft Closure</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — LIVING -->
+  <section class="room" id="living">
+    <div class="room-head">
+      <h2>Living Room <br><span class="tag">TV Unit · Sofa Wall · Fall Ceiling</span></h2>
+      <div class="room-total"><span>Room Total</span><strong>₹35,746</strong></div>
+    </div>
+    <div class="room-body">
+      <div>
+        <div class="gallery single">
+          <figure>
+            <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Hall TV Unit (back ground will be a wall paper).jpg','TV Unit Wall — Reference')">
+              <img src="My interior selected images/upscaled/Hall TV Unit (back ground will be a wall paper).jpg" alt="TV unit with open shelving and wallpaper background">
+            </div>
+            <figcaption>Reference — TV base unit + open shelving + wallpaper back panel</figcaption>
+          </figure>
+        </div>
+        <div class="gallery double" style="margin-top:.9rem;">
+          <figure>
+            <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Hall SOfa back side wall Design.jpg','Sofa Back Wall — Reference')">
+              <img src="My interior selected images/upscaled/Hall SOfa back side wall Design.jpg" alt="Sofa back wall design">
+            </div>
+            <figcaption>Sofa back wall accent</figcaption>
+          </figure>
+          <figure>
+            <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Fall ceiling 1.jpg','Fall Ceiling — Reference')">
+              <img src="My interior selected images/upscaled/Fall ceiling 1.jpg" alt="Fall ceiling design reference">
+            </div>
+            <figcaption>Fall ceiling reference (Option 1)</figcaption>
+          </figure>
+        </div>
+        <div class="brief">
+          <ul>
+            <li>Floating wooden-finish TV base unit (closed storage) with tall open-shelf towers on either side</li>
+            <li>Open side storage with coloured internal laminate for display items</li>
+            <li>Wallpaper installed on TV back wall (charged per 50 sqft multiples)</li>
+            <li>Sofa back wall accent treatment, coordinated tone with TV wall</li>
+            <li>Fall ceiling (gypsum, stepped profile with cove lighting) — see Floor Plan page for ceiling options</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cost-table">
+        <div class="ct-head">Carpentry Items <span class="ct-icon">●</span></div>
+        <table>
+          <tr><th>Unit</th><th>Type</th><th>SFT</th><th>Amount</th></tr>
+          <tr><td>TV Base Unit</td><td>Closed Unit</td><td class="sft">8</td><td class="amount">₹15,192</td></tr>
+          <tr><td>TV Side Open Storage</td><td>Open Unit</td><td class="sft">7</td><td class="amount">₹10,829</td></tr>
+          <tr><td>TV Back Panel</td><td>Wallpaper</td><td class="sft">1×50</td><td class="amount">₹9,725</td></tr>
+          <tr class="subtotal"><td colspan="3">Living Subtotal</td><td class="amount">₹35,746</td></tr>
+        </table>
+        <div class="ct-note">TV Base &amp; Storage: MR Grade, Century Sainik plywood, Hettich Soft Closure hardware · Wallpaper: material + labour + installation, charged in multiples of 50 sqft</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — DINING -->
+  <section class="room" id="dining">
+    <div class="room-head">
+      <h2>Dining <br><span class="tag">Crockery Unit · Panelling · Ceiling Art</span></h2>
+      <div class="room-total"><span>Room Total</span><strong>₹37,268</strong></div>
+    </div>
+    <div class="room-body">
+      <div>
+        <div class="gallery single">
+          <figure>
+            <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Crokery Unit at Pooja place.jpg','Crockery Unit — Reference')">
+              <img src="My interior selected images/upscaled/Crokery Unit at Pooja place.jpg" alt="Crockery unit reference">
+            </div>
+            <figcaption>Reference — crockery base unit with glass display</figcaption>
+          </figure>
+        </div>
+        <div class="gallery single" style="margin-top:.9rem;">
+          <figure>
+            <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Dining Hall cieling art.jpg','Dining Ceiling Art — Reference')">
+              <img src="My interior selected images/upscaled/Dining Hall cieling art.jpg" alt="Dining hall ceiling art design">
+            </div>
+            <figcaption>Reference — dining ceiling feature</figcaption>
+          </figure>
+        </div>
+        <div class="brief">
+          <ul>
+            <li>Crockery base unit (closed) with arched glass-front display section, as shown in reference</li>
+            <li>Wall panelling (12mm MR plywood) along the dining wall — 16 sft</li>
+            <li>Decorative ceiling art panel centered above the dining table, coordinated with pendant light</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cost-table">
+        <div class="ct-head">Carpentry Items <span class="ct-icon">●</span></div>
+        <table>
+          <tr><th>Unit</th><th>Type</th><th>SFT</th><th>Amount</th></tr>
+          <tr><td>Crockery Base Unit</td><td>Closed Unit</td><td class="sft">12</td><td class="amount">₹22,788</td></tr>
+          <tr><td>Dining Panelling</td><td>Panelling</td><td class="sft">16</td><td class="amount">₹14,480</td></tr>
+          <tr class="subtotal"><td colspan="3">Dining Subtotal</td><td class="amount">₹37,268</td></tr>
+        </table>
+        <div class="ct-note">Crockery Unit: MR Grade, Century Sainik plywood, Hettich Soft Closure · Panelling: 12mm MR Plywood (Century Sainik)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — POOJA -->
+  <section class="room" id="pooja">
+    <div class="room-head">
+      <h2>Pooja <br><span class="tag">Unit · CNC Door · Texture Paint</span></h2>
+      <div class="room-total"><span>Room Total</span><strong>₹32,715</strong></div>
+    </div>
+    <div class="room-body">
+      <div>
+        <div class="gallery single">
+          <figure>
+            <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Pooja left to kitchen.jpg','Pooja Unit — Reference')">
+              <img src="My interior selected images/upscaled/Pooja left to kitchen.jpg" alt="Pooja unit design located left of kitchen">
+            </div>
+            <figcaption>Reference — pooja unit, positioned left of kitchen</figcaption>
+          </figure>
+        </div>
+        <div class="brief">
+          <ul>
+            <li>Compact pooja base unit (closed), wooden finish, sized to the niche left of the kitchen</li>
+            <li>CNC-cut decorative door panelling (12mm MR plywood) — 21 sft, front face of pooja unit</li>
+            <li>Texture paint finish on pooja wall (Asian Paint) — 12 sft</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cost-table">
+        <div class="ct-head">Carpentry Items <span class="ct-icon">●</span></div>
+        <table>
+          <tr><th>Unit</th><th>Type</th><th>SFT</th><th>Amount</th></tr>
+          <tr><td>Pooja Base Unit</td><td>Closed Unit</td><td class="sft">6</td><td class="amount">₹11,394</td></tr>
+          <tr><td>CNC Door</td><td>Panelling</td><td class="sft">21</td><td class="amount">₹19,005</td></tr>
+          <tr><td>Pooja Painting</td><td>Texture Paint</td><td class="sft">12</td><td class="amount">₹2,316</td></tr>
+          <tr class="subtotal"><td colspan="3">Pooja Subtotal</td><td class="amount">₹32,715</td></tr>
+        </table>
+        <div class="ct-note">Base Unit: MR Grade, Century Sainik, Hettich Soft Closure · CNC Door: 12mm MR Plywood (Century Sainik) · Painting: Asian Paint texture finish</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 — KITCHEN -->
+  <section class="room" id="kitchen">
+    <div class="room-head">
+      <h2>Kitchen <br><span class="tag">Base · Top · Loft · Accessories</span></h2>
+      <div class="room-total"><span>Room Total</span><strong>₹223,817</strong></div>
+    </div>
+    <div class="room-body">
+      <div>
+        <div class="gallery double">
+          <figure>
+            <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Kitchen 1.jpg','Kitchen — Main Working Wall')">
+              <img src="My interior selected images/upscaled/Kitchen 1.jpg" alt="Kitchen cabinet reference 1">
+            </div>
+            <figcaption>Main working wall</figcaption>
+          </figure>
+          <figure>
+            <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Kitchen  opposite.jpg','Kitchen — Opposite Wall / Counter')">
+              <img src="My interior selected images/upscaled/Kitchen  opposite.jpg" alt="Kitchen opposite wall reference">
+            </div>
+            <figcaption>Opposite wall / counter</figcaption>
+          </figure>
+        </div>
+        <div class="brief">
+          <ul>
+            <li>Base units (BWP grade, water-resistant) along main working wall with countertop &amp; sink cutout</li>
+            <li>Wall-mounted top units above counter, MR grade with wooden/fabric internal laminate</li>
+            <li>Loft storage above top units (16mm MR plywood)</li>
+            <li>Storage cabinets on opposite wall for additional kitchen storage / appliances</li>
+            <li>Accessories: Tandem box (pot &amp; pan), wire basket with thali inlet, cutlery tray, bottle pull-out — all Hettich</li>
+            <li>Gola profile handles (handle-less look) throughout</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cost-table">
+        <div class="ct-head">Carpentry Items <span class="ct-icon">●</span></div>
+        <table>
+          <tr><th>Unit</th><th>Type</th><th>SFT</th><th>Amount</th></tr>
+          <tr><td>Base Unit</td><td>Closed Unit</td><td class="sft">45.76</td><td class="amount">₹98,430</td></tr>
+          <tr><td>Top Unit</td><td>Closed Unit</td><td class="sft">23.2</td><td class="amount">₹44,057</td></tr>
+          <tr><td>Loft</td><td>Loft</td><td class="sft">35.2</td><td class="amount">₹38,403</td></tr>
+          <tr><td>Tandem Box (Pot &amp; Pan)</td><td>Accessory</td><td class="sft">1</td><td class="amount">₹10,146</td></tr>
+          <tr><td>Wire Basket w/ Thali Inlet</td><td>Accessory</td><td class="sft">2</td><td class="amount">₹10,050</td></tr>
+          <tr><td>Cutlery Tray</td><td>Accessory</td><td class="sft">1</td><td class="amount">₹9,880</td></tr>
+          <tr><td>Bottle Pull-Out</td><td>Accessory</td><td class="sft">1</td><td class="amount">₹7,925</td></tr>
+          <tr><td>Gola Profile Handles</td><td>Accessory</td><td class="sft">2</td><td class="amount">₹4,926</td></tr>
+          <tr class="subtotal"><td colspan="3">Kitchen Subtotal</td><td class="amount">₹223,817</td></tr>
+        </table>
+        <div class="ct-note">Base Unit: BWP Grade (water-resistant) · Top/Loft: MR Grade, Century Sainik · All hardware: Hettich · Handles: Gola Profile, Reminiscent recommended</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 — MASTER BEDROOM (BR-1) -->
+  <section class="room" id="br1">
+    <div class="room-head">
+      <h2>Master Bedroom (BR-1) <br><span class="tag">Wardrobe · Dressing · King Bed</span></h2>
+      <div class="room-total"><span>Room Total</span><strong>₹221,895</strong></div>
+    </div>
+    <div class="room-body">
+      <div>
+        <div class="gallery double">
+          <figure>
+            <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Master Bedroommwardroab.jpg','Master Bedroom Wardrobe — Reference')">
+              <img src="My interior selected images/upscaled/Master Bedroommwardroab.jpg" alt="Master bedroom wardrobe design">
+            </div>
+            <figcaption>Wardrobe reference</figcaption>
+          </figure>
+          <figure>
+            <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Master bedroom Dressing table.jpg','Dressing Table — Reference')">
+              <img src="My interior selected images/upscaled/Master bedroom Dressing table.jpg" alt="Master bedroom dressing table design">
+            </div>
+            <figcaption>Dressing table reference</figcaption>
+          </figure>
+        </div>
+        <div class="brief">
+          <ul>
+            <li>Floor-to-ceiling wardrobe (56 sft) with loft storage above (16 sft), wooden/fabric internal laminate</li>
+            <li>Dressing unit (6 sft) with mirror panel + panelling (8 sft), integrated vanity lighting</li>
+            <li>Additional tall unit / dressing storage (6 sft)</li>
+            <li>Study-style panelling (4.5 sft) — small wall feature near dressing area</li>
+            <li>King size bed with hydraulic storage and cushioned headboard</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cost-table">
+        <div class="ct-head">Carpentry Items <span class="ct-icon">●</span></div>
+        <table>
+          <tr><th>Unit</th><th>Type</th><th>SFT</th><th>Amount</th></tr>
+          <tr><td>Wardrobe</td><td>Closed Unit</td><td class="sft">56</td><td class="amount">₹106,344</td></tr>
+          <tr><td>Wardrobe Loft</td><td>Loft</td><td class="sft">16</td><td class="amount">₹17,456</td></tr>
+          <tr><td>Dressing Unit</td><td>Closed Unit</td><td class="sft">6</td><td class="amount">₹11,394</td></tr>
+          <tr><td>Mirror + Panelling</td><td>Mirror</td><td class="sft">8</td><td class="amount">₹11,400</td></tr>
+          <tr><td>Tall Unit (Dressing)</td><td>Closed Unit</td><td class="sft">6</td><td class="amount">₹11,394</td></tr>
+          <tr><td>Study Panelling</td><td>Panelling</td><td class="sft">4.5</td><td class="amount">₹4,073</td></tr>
+          <tr><td>Bed (King Size)</td><td>Bed</td><td class="sft">1</td><td class="amount">₹59,834</td></tr>
+          <tr class="subtotal"><td colspan="3">Master Bedroom Subtotal</td><td class="amount">₹221,895</td></tr>
+        </table>
+        <div class="ct-note">Wardrobe/Dressing/Tall Unit: MR Grade, Century Sainik, Hettich Soft Closure · Mirror: Saint Gobain / Ozone / Nirman · Bed: King size with hydraulic storage &amp; cushioned headboard</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 — KIDS ROOM (BR-2) -->
+  <section class="room" id="br2">
+    <div class="room-head">
+      <h2>Kids Room (BR-2) <br><span class="tag">Wardrobe · Study Unit · Queen Bed</span></h2>
+      <div class="room-total"><span>Room Total</span><strong>₹168,404</strong></div>
+    </div>
+    <div class="room-body">
+      <div>
+        <div class="gallery double">
+          <figure>
+            <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/kids bedroom Wardroab.jpg','Kids Room Wardrobe — Reference')">
+              <img src="My interior selected images/upscaled/kids bedroom Wardroab.jpg" alt="Kids bedroom wardrobe design">
+            </div>
+            <figcaption>Wardrobe reference</figcaption>
+          </figure>
+          <figure>
+            <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/kids roon Steady Unit.jpg','Study Unit — Reference')">
+              <img src="My interior selected images/upscaled/kids roon Steady Unit.jpg" alt="Kids room study unit design">
+            </div>
+            <figcaption>Study unit reference</figcaption>
+          </figure>
+        </div>
+        <div class="brief">
+          <ul>
+            <li>Wardrobe (42 sft) with loft storage above (12 sft), mixed open/closed compartments</li>
+            <li>Built-in study unit: base unit (4.5 sft) + top unit (6 sft) for desk &amp; storage</li>
+            <li>Queen size bed with hydraulic storage and cushioned headboard</li>
+            <li>Additional plain mirror (10 sft, no panelling)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cost-table">
+        <div class="ct-head">Carpentry Items <span class="ct-icon">●</span></div>
+        <table>
+          <tr><th>Unit</th><th>Type</th><th>SFT</th><th>Amount</th></tr>
+          <tr><td>Wardrobe</td><td>Closed Unit</td><td class="sft">42</td><td class="amount">₹79,758</td></tr>
+          <tr><td>Wardrobe Loft</td><td>Loft</td><td class="sft">12</td><td class="amount">₹13,092</td></tr>
+          <tr><td>Study Base Unit</td><td>Closed Unit</td><td class="sft">4.5</td><td class="amount">₹8,546</td></tr>
+          <tr><td>Study Top Unit</td><td>Closed Unit</td><td class="sft">6</td><td class="amount">₹11,394</td></tr>
+          <tr><td>Bed (Queen Size)</td><td>Bed</td><td class="sft">1</td><td class="amount">₹50,764</td></tr>
+          <tr><td>Mirror (no panelling)</td><td>Mirror</td><td class="sft">10</td><td class="amount">₹4,850</td></tr>
+          <tr class="subtotal"><td colspan="3">Kids Room Subtotal</td><td class="amount">₹168,404</td></tr>
+        </table>
+        <div class="ct-note">Wardrobe/Study: MR Grade, Century Sainik, Hettich Soft Closure · Bed: Queen size with hydraulic storage &amp; cushioned headboard · Mirror: Saint Gobain / Ozone / Nirman</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 — SUMMARY -->
+  <section class="room" id="summary">
+    <div class="summary">
+      <h2>Estimate Summary</h2>
+      <div class="summary-grid">
+        <div>
+          <table>
+            <tr><th>Room</th><th style="text-align:right">Subtotal</th></tr>
+            <tr><td>Foyer</td><td class="amount">₹18,516</td></tr>
+            <tr><td>Living</td><td class="amount">₹35,746</td></tr>
+            <tr><td>Dining</td><td class="amount">₹37,268</td></tr>
+            <tr><td>Pooja</td><td class="amount">₹32,715</td></tr>
+            <tr><td>Kitchen</td><td class="amount">₹223,817</td></tr>
+            <tr><td>Master Bedroom (BR-1)</td><td class="amount">₹221,895</td></tr>
+            <tr><td>Kids Room (BR-2)</td><td class="amount">₹168,404</td></tr>
+            <tr><td>Others (Electrical/Plumbing/Cleaning/Floor — on actuals)</td><td class="amount">₹0</td></tr>
+          </table>
+        </div>
+        <div>
+          <table>
+            <tr><th>Charges</th><th style="text-align:right">Amount</th></tr>
+            <tr><td>Subtotal (all rooms)</td><td class="amount">₹7,38,361</td></tr>
+            <tr><td>Discount</td><td class="amount">-₹73,836</td></tr>
+            <tr><td>After Discount</td><td class="amount">₹6,64,525</td></tr>
+            <tr><td>GST (18%)</td><td class="amount">₹1,19,614</td></tr>
+            <tr><td>Shoot Cashback (2%, separate)</td><td class="amount">₹15,683</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="grand">
+        <div class="label">Total Payable (with GST)</div>
+        <div class="value">₹7,84,139</div>
+      </div>
+      <div class="terms">
+        <strong>Key Terms:</strong> 7-year replacement warranty + 10-year maintenance warranty on woodwork (excl. glass) ·
+        Electrical appliances &amp; light-point creation excluded · Plumbing &amp; electrical labour on actuals ·
+        Colour laminates capped at ₹1,500/sheet · Handles capped at ₹200/handle ·
+        Vendor payments due in full before material/service delivery · Quote valid 30 days from 08 Jun 2026.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="stamp">End of Design Scheme</div>
+  <p>
+    Prepared as a working reference for Anuhar Towers, Block B · Flat No. 902 (2BHK).
+    Cost data sourced from Reminiscent Interior Design estimate (Project REM-20260417-5575, 08 Jun 2026).
+    Verify exact dimensions on-site against the floor plan before fabrication.
+  </p>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-close" onclick="closeLightbox(event)">&times;</div>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<script>
+  function openLightbox(src, caption){
+    var lb = document.getElementById('lightbox');
+    var img = document.getElementById('lightbox-img');
+    var cap = document.getElementById('lightbox-caption');
+    img.src = src;
+    img.alt = caption || '';
+    cap.textContent = caption || '';
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e){
+    var lb = document.getElementById('lightbox');
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+    document.getElementById('lightbox-img').src = '';
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>

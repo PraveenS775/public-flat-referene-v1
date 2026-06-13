@@ -1,0 +1,2445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anuhar Towers · Flat 902 — Interactive 3D Design Portfolio</title>
+  
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Theme color tokens - Premium Editorial Dark Mode First */
+      --bg-primary: #0b0907;
+      --bg-secondary: #13100c;
+      --bg-tertiary: #1b1712;
+      
+      --accent-clay: #c1582f;
+      --accent-clay-hover: #e06c3b;
+      --accent-moss: #7c885c;
+      --accent-gold: #d29d50;
+      
+      --text-primary: #f5f0e6;
+      --text-secondary: #c9bfb0;
+      --text-muted: #807567;
+      
+      --border-color: #241e17;
+      --border-highlight: #3b3227;
+      --shadow-primary: 0 20px 48px -10px rgba(0, 0, 0, 0.85);
+      
+      --font-serif: 'Fraunces', serif;
+      --font-sans: 'Outfit', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+      
+      --transition-speed: 0.4s;
+    }
+    
+    [data-theme="light"] {
+      --bg-primary: #f7f4ee;
+      --bg-secondary: #ebe4d5;
+      --bg-tertiary: #e0d7c4;
+      
+      --accent-clay: #9c4220;
+      --accent-clay-hover: #b84f27;
+      --accent-moss: #55603b;
+      --accent-gold: #ab7a33;
+      
+      --text-primary: #241f1a;
+      --text-secondary: #54493e;
+      --text-muted: #857668;
+      
+      --border-color: #d2c5ae;
+      --border-highlight: #c1b39a;
+      --shadow-primary: 0 20px 48px -18px rgba(43, 37, 32, 0.22);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+    
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1), 
+                  color var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    /* Scrollbar customization */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-highlight);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-clay);
+    }
+    
+    /* Layout */
+    .sidebar {
+      width: 320px;
+      background-color: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      transition: all var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .main-content {
+      margin-left: 320px;
+      flex: 1;
+      padding: 3rem 4rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Sidebar Header */
+    .sidebar-header {
+      padding: 3rem 2rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .sidebar-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent-clay);
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+    }
+    
+    .sidebar-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+    
+    .sidebar-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      opacity: 0.8;
+    }
+    
+    /* Sidebar Navigation */
+    .sidebar-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem 1rem;
+    }
+    
+    .nav-group-title {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin: 1.5rem 1rem 0.5rem;
+      font-weight: 700;
+    }
+    
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      margin-bottom: 0.3rem;
+      border: 1px solid transparent;
+    }
+    
+    .nav-item:hover {
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
+      transform: translateX(2px);
+    }
+    
+    .nav-item.active {
+      background-color: var(--accent-clay);
+      color: #ffffff;
+      font-weight: 500;
+      box-shadow: 0 8px 20px -5px rgba(193, 88, 47, 0.35);
+    }
+    
+    .nav-item-name {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.88rem;
+    }
+    
+    .nav-item-num {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      opacity: 0.6;
+    }
+    
+    .nav-item-cost {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      opacity: 0.85;
+    }
+    
+    .nav-item.active .nav-item-cost {
+      color: #ffffff;
+      opacity: 1;
+    }
+    
+    /* Sidebar Footer */
+    .sidebar-footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .theme-toggle-btn {
+      background: none;
+      border: 1px solid var(--border-highlight);
+      color: var(--text-primary);
+      padding: 0.5rem 1.1rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      transition: all var(--transition-speed) ease;
+    }
+    
+    .theme-toggle-btn:hover {
+      border-color: var(--accent-clay);
+      color: var(--accent-clay);
+      background-color: rgba(193, 88, 47, 0.05);
+    }
+    
+    /* Main Content Header */
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.8rem;
+    }
+    
+    .header-info h1 {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.3rem;
+    }
+    
+    .header-info p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .header-info p span strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    
+    .header-actions {
+      text-align: right;
+    }
+    
+    .cost-badge {
+      display: inline-block;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-highlight);
+      padding: 0.65rem 1.4rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .cost-badge-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.2rem;
+      font-weight: 700;
+    }
+    
+    .cost-badge-value {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-clay);
+    }
+    
+    /* Room Section Content */
+    .room-section {
+      display: none;
+      flex-direction: column;
+      gap: 3rem;
+      animation: fadeIn var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    
+    .room-section.active {
+      display: flex;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Presentation Grid */
+    .visual-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    
+    @media (max-width: 1200px) {
+      .visual-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+    
+    /* Render Showcase Card */
+    .render-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-primary);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    
+    .render-header {
+      padding: 1.1rem 1.6rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.12);
+    }
+    
+    .render-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      letter-spacing: 0.02em;
+    }
+    
+    .render-title::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-clay);
+      display: inline-block;
+    }
+    
+    /* Display Selector Tabs */
+    .view-tabs {
+      display: flex;
+      gap: 0.35rem;
+      background-color: var(--bg-tertiary);
+      padding: 0.25rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-highlight);
+    }
+    
+    .view-tab-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      padding: 0.35rem 0.95rem;
+      border-radius: 15px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      transition: all 0.2s ease;
+    }
+    
+    .view-tab-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .view-tab-btn.active {
+      background-color: var(--accent-clay);
+      color: #ffffff;
+    }
+    
+    /* Interactive Before/After Split Slider */
+    .slider-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      user-select: none;
+      background-color: #000;
+    }
+    
+    .slider-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    
+    .slider-image.before {
+      z-index: 1;
+    }
+    
+    .slider-image.after {
+      z-index: 2;
+      clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+    }
+    
+    .slider-bar {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background-color: #ffffff;
+      z-index: 10;
+      pointer-events: none;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .slider-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      color: var(--bg-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 900;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      z-index: 11;
+      cursor: ew-resize;
+      pointer-events: none;
+      border: 3px solid var(--accent-clay);
+      transition: transform 0.15s ease;
+    }
+    
+    .slider-wrapper:hover .slider-handle {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+    
+    .slider-range-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      z-index: 20;
+      cursor: ew-resize;
+      margin: 0;
+    }
+    
+    .slider-badge {
+      position: absolute;
+      bottom: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background-color: rgba(11, 9, 7, 0.8);
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-highlight);
+      z-index: 5;
+    }
+    
+    .slider-badge.before-badge {
+      left: 1rem;
+    }
+    
+    .slider-badge.after-badge {
+      right: 1rem;
+    }
+    
+    /* Standard Image Mode */
+    .image-container {
+      position: relative;
+      background-color: #000;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      cursor: zoom-in;
+      display: none;
+    }
+    
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: none;
+    }
+    
+    .image-container img.active {
+      display: block;
+      animation: imageFade 0.3s ease-in-out;
+    }
+    
+    @keyframes imageFade {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+    
+    .image-container:hover img {
+      transform: scale(1.02);
+    }
+    
+    .image-caption {
+      padding: 1rem 1.6rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    
+    /* Reference Gallery Panel */
+    .reference-gallery {
+      margin-top: 1.2rem;
+      display: flex;
+      gap: 0.8rem;
+    }
+    
+    .ref-thumbnail {
+      width: 76px;
+      height: 56px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid var(--border-highlight);
+      cursor: pointer;
+      opacity: 0.5;
+      transition: all 0.25s ease;
+    }
+    
+    .ref-thumbnail:hover, .ref-thumbnail.active {
+      opacity: 1;
+      border-color: var(--accent-clay);
+      transform: translateY(-2px);
+    }
+    
+    .ref-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Detail Panel */
+    .detail-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+    
+    /* Cost Table Card */
+    .cost-table-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-primary);
+    }
+    
+    .card-header {
+      padding: 1.3rem 1.6rem;
+      border-bottom: 1px solid var(--border-color);
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      background-color: rgba(0, 0, 0, 0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .dimension-badge {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--accent-gold);
+      border: 1px solid rgba(210, 157, 80, 0.25);
+      background-color: rgba(210, 157, 80, 0.05);
+      padding: 0.2rem 0.6rem;
+      border-radius: 10px;
+      font-weight: normal;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    
+    th, td {
+      padding: 0.85rem 1.4rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    th {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      background-color: rgba(0, 0, 0, 0.05);
+      font-weight: 700;
+    }
+    
+    td.amount {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    
+    td.sft {
+      text-align: right;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+    }
+    
+    tr.subtotal-row td {
+      background-color: rgba(0, 0, 0, 0.15);
+      font-weight: 700;
+      border-top: 2px solid var(--border-highlight);
+      border-bottom: none;
+    }
+    
+    tr.subtotal-row td.amount {
+      color: var(--accent-clay);
+      font-size: 0.98rem;
+    }
+    
+    .material-note {
+      padding: 1.1rem 1.6rem;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      background-color: rgba(0, 0, 0, 0.08);
+      line-height: 1.55;
+    }
+    
+    /* Brief Box */
+    .brief-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 1.8rem;
+      box-shadow: var(--shadow-primary);
+      position: relative;
+    }
+    
+    .brief-badge {
+      position: absolute;
+      top: -12px;
+      left: 1.8rem;
+      background-color: var(--accent-clay);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 0.3rem 0.85rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .brief-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: 0.4rem;
+    }
+    
+    .brief-card li {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    
+    .brief-card li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--accent-clay);
+      font-size: 0.85rem;
+    }
+    
+    /* Summary Page Style */
+    .summary-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: var(--shadow-primary);
+      margin-bottom: 2.5rem;
+    }
+    
+    .summary-title {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.2rem;
+    }
+    
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+    }
+    
+    @media (max-width: 900px) {
+      .summary-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+    
+    .summary-table th {
+      background-color: transparent;
+      padding: 0.6rem 0;
+    }
+    
+    .summary-table td {
+      padding: 0.85rem 0;
+      font-size: 0.92rem;
+    }
+    
+    .grand-total-container {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--accent-clay);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .grand-label {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    
+    .grand-value {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--accent-clay);
+      letter-spacing: -0.02em;
+    }
+    
+    .terms-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 1.8rem 2.5rem;
+      margin-top: 2rem;
+      box-shadow: var(--shadow-primary);
+    }
+    
+    .terms-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-clay);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    
+    .terms-list {
+      list-style: decimal;
+      padding-left: 1.3rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(8, 6, 5, 0.96);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      cursor: zoom-out;
+    }
+    
+    .lightbox.active {
+      display: flex;
+    }
+    
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+      border: 1px solid var(--border-highlight);
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: -45px;
+      right: 0;
+      font-size: 2rem;
+      color: #ffffff;
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: transform 0.2s;
+    }
+    
+    .lightbox-close:hover {
+      transform: scale(1.1);
+    }
+    
+    .lightbox-caption {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+    
+    /* Hamburger Menu for Mobile */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--accent-clay);
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 8px 25px rgba(193, 88, 47, 0.4);
+      z-index: 200;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .menu-toggle:active {
+      transform: scale(0.9);
+    }
+    
+    /* Responsive styling & overlays */
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 95;
+      display: none;
+      opacity: 0;
+      transition: opacity var(--transition-speed) ease;
+    }
+    
+    .sidebar-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Wrap reference gallery thumbnails on mobile so they don't cause horizontal overflow */
+    .reference-gallery {
+      flex-wrap: wrap;
+    }
+    
+    /* Enable horizontal scroll on tables when viewports are small */
+    .cost-table-card table {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    @media (max-width: 992px) {
+      body {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: -320px;
+        width: 320px;
+        height: 100vh;
+        box-shadow: 10px 0 40px rgba(0, 0, 0, 0.5);
+        z-index: 100;
+      }
+      
+      .sidebar.open {
+        left: 0;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        padding: 2rem 1.5rem 6rem;
+      }
+      
+      .main-header {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .header-actions {
+        width: 100%;
+        text-align: left;
+      }
+      
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .render-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding: 1rem;
+      }
+      
+      .view-tabs {
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        scrollbar-width: none; /* Firefox */
+      }
+      
+      .view-tabs::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+      }
+      
+      .view-tab-btn {
+        flex: 1 0 auto;
+        padding: 0.35rem 0.8rem;
+        text-align: center;
+      }
+      
+      .summary-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .summary-card {
+        padding: 1.8rem;
+      }
+      
+      .grand-total-container {
+        margin-top: 2rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+      
+      .grand-value {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <!-- Sidebar overlay backdrop -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <!-- Mobile Floating Menu Toggle -->
+  <button class="menu-toggle" id="menu-toggle-btn" onclick="toggleSidebar()">☰</button>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="app-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-eyebrow">Visual Design Map</div>
+      <h2 class="sidebar-title">Anuhar Towers</h2>
+      <div class="sidebar-subtitle">Block B · Flat 902 Interiors</div>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <div class="nav-group-title">Spaces (₹7,84,139 total)</div>
+      
+      <a class="nav-item active" onclick="showRoom('foyer', this)">
+        <span class="nav-item-name">
+          <span class="nav-item-num">01</span> Foyer
+        </span>
+        <span class="nav-item-cost">₹18,516</span>
+      </a>
+      
+      <a class="nav-item" onclick="showRoom('living', this)">
+        <span class="nav-item-name">
+          <span class="nav-item-num">02</span> Living Room
+        </span>
+        <span class="nav-item-cost">₹35,746</span>
+      </a>
+      
+      <a class="nav-item" onclick="showRoom('dining', this)">
+        <span class="nav-item-name">
+          <span class="nav-item-num">03</span> Dining Room
+        </span>
+        <span class="nav-item-cost">₹37,268</span>
+      </a>
+      
+      <a class="nav-item" onclick="showRoom('pooja', this)">
+        <span class="nav-item-name">
+          <span class="nav-item-num">04</span> Pooja Room
+        </span>
+        <span class="nav-item-cost">₹32,715</span>
+      </a>
+      
+      <a class="nav-item" onclick="showRoom('kitchen', this)">
+        <span class="nav-item-name">
+          <span class="nav-item-num">05</span> Kitchen
+        </span>
+        <span class="nav-item-cost">₹2,23,817</span>
+      </a>
+      
+      <a class="nav-item" onclick="showRoom('br1', this)">
+        <span class="nav-item-name">
+          <span class="nav-item-num">06</span> Master Bed (BR-1)
+        </span>
+        <span class="nav-item-cost">₹2,21,895</span>
+      </a>
+      
+      <a class="nav-item" onclick="showRoom('br2', this)">
+        <span class="nav-item-name">
+          <span class="nav-item-num">07</span> Kids Bed (BR-2)
+        </span>
+        <span class="nav-item-cost">₹168,404</span>
+      </a>
+      
+      <a class="nav-item" onclick="showRoom('washbasin', this)">
+        <span class="nav-item-name">
+          <span class="nav-item-num">08</span> Wash Basin
+        </span>
+        <span class="nav-item-cost">TBD</span>
+      </a>
+      
+      <div class="nav-group-title">Finances</div>
+      
+      <a class="nav-item" onclick="showRoom('summary', this)">
+        <span class="nav-item-name">
+          <span class="nav-item-num">§</span> Budget Summary
+        </span>
+        <span class="nav-item-cost">₹7,84,139</span>
+      </a>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <button class="theme-toggle-btn" onclick="toggleTheme()">
+        <span id="theme-icon">☀</span> <span id="theme-text">LIGHT</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Window -->
+  <main class="main-content">
+    
+    <!-- 01 FOYER -->
+    <section class="room-section active" id="sec-foyer">
+      <header class="main-header">
+        <div class="header-info">
+          <h1>Foyer</h1>
+          <p>
+            <span>Unit: <strong>Flat 902 · Block B</strong></span>
+            <span>Area: <strong>Entryway</strong></span>
+          </p>
+        </div>
+        <div class="header-actions">
+          <div class="cost-badge">
+            <span class="cost-badge-label">Room Subtotal</span>
+            <span class="cost-badge-value">₹18,516</span>
+          </div>
+        </div>
+      </header>
+      
+      <div class="visual-grid">
+        <div>
+          <div class="render-card">
+            <div class="render-header">
+              <div class="render-title">Foyer Visuals</div>
+              <div class="view-tabs">
+                <button class="view-tab-btn active" id="btn-foyer-slider" onclick="setVisualMode('foyer', 'slider')">Before / After</button>
+                <button class="view-tab-btn" id="btn-foyer-render" onclick="setVisualMode('foyer', 'render')">3D Render</button>
+                <button class="view-tab-btn" id="btn-foyer-ref" onclick="setVisualMode('foyer', 'ref1')">Reference</button>
+              </div>
+            </div>
+            
+            <!-- Before/After interactive slider -->
+            <div class="slider-wrapper" id="foyer-slider-container">
+              <img class="slider-image before" src="My interior selected images/upscaled/foyer_ref.png" alt="Foyer Reference Concept">
+              <img class="slider-image after" id="foyer-slider-after" src="generated_renders/foyer.png" alt="Foyer 3D Render">
+              <div class="slider-bar" id="foyer-slider-bar"></div>
+              <div class="slider-handle" id="foyer-slider-handle">↔</div>
+              <div class="slider-badge before-badge">Reference</div>
+              <div class="slider-badge after-badge">3D Render</div>
+              <input type="range" min="0" max="100" value="50" class="slider-range-input" oninput="handleSlider(this, 'foyer')">
+            </div>
+            
+            <!-- Standard Image Container for individual views -->
+            <div class="image-container" id="foyer-img-container" onclick="zoomImage(this)">
+              <img id="foyer-img-render" src="generated_renders/foyer.png" alt="Foyer 3D Render (Oak console & cushion seat)">
+              <img id="foyer-img-ref1" src="My interior selected images/upscaled/foyer_ref.png" alt="Foyer Reference Design Concept (Low Oak shoe cabinet)">
+            </div>
+            
+            <div class="image-caption" id="foyer-caption">Interactive Before/After Slider — Compare concept and 3D render</div>
+          </div>
+          
+          <div class="reference-gallery">
+            <div class="ref-thumbnail active" onclick="setVisualMode('foyer', 'slider')"><img src="generated_renders/foyer.png" alt="Slider"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('foyer', 'render')"><img src="generated_renders/foyer.png" alt="Render"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('foyer', 'ref1')"><img src="My interior selected images/upscaled/foyer_ref.png" alt="Ref"></div>
+          </div>
+        </div>
+        
+        <div class="detail-panel">
+          <div class="brief-card">
+            <div class="brief-badge">WHAT'S BEING BUILT</div>
+            <ul>
+              <li>Low-height entry shoe console cabinet (approx. 3.5' wide by 2.5' tall). Matches estimate area of 7.5 SFT.</li>
+              <li>Century Sainik MR-grade plywood construction with premium wood laminate.</li>
+              <li>Hettich soft-closure drawer hardware for shutters.</li>
+              <li>Matching low-height seating bench on the side (approx. 1.5' wide, 1.5' tall, 2.25 SFT) with a soft cushion on top.</li>
+            </ul>
+          </div>
+          
+          <div class="cost-table-card">
+            <div class="card-header">
+              <span>Carpentry Cost Details</span>
+              <span class="dimension-badge">Low Profile Console (Not Ceiling Height)</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Unit Item</th>
+                  <th>Type</th>
+                  <th style="text-align:right">SFT</th>
+                  <th style="text-align:right">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Shoe Rack Console</td>
+                  <td>Closed Unit</td>
+                  <td class="sft">7.50</td>
+                  <td class="amount">₹14,243</td>
+                </tr>
+                <tr>
+                  <td>Seater Bench</td>
+                  <td>Closed Unit</td>
+                  <td class="sft">2.25</td>
+                  <td class="amount">₹4,273</td>
+                </tr>
+                <tr class="subtotal-row">
+                  <td colspan="3">Foyer Subtotal</td>
+                  <td class="amount">₹18,516</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="material-note">
+              <strong>Materials:</strong> MR Grade plywood (Century Sainik), 6mm back ply, 16mm carcass/shutter. <br>
+              <strong>Hardware:</strong> Hettich Soft Closure hinges.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 LIVING ROOM -->
+    <section class="room-section" id="sec-living">
+      <header class="main-header">
+        <div class="header-info">
+          <h1>Living Room</h1>
+          <p>
+            <span>Unit: <strong>Flat 902 · Block B</strong></span>
+            <span>Area: <strong>TV Wall & Sofa Accent</strong></span>
+          </p>
+        </div>
+        <div class="header-actions">
+          <div class="cost-badge">
+            <span class="cost-badge-label">Room Subtotal</span>
+            <span class="cost-badge-value">₹35,746</span>
+          </div>
+        </div>
+      </header>
+      
+      <div class="visual-grid">
+        <div>
+          <div class="render-card">
+            <div class="render-header">
+              <div class="render-title">Living Room Visuals</div>
+              <div class="view-tabs">
+                <button class="view-tab-btn active" id="btn-living-slider" onclick="setVisualMode('living', 'slider')">Before / After</button>
+                <button class="view-tab-btn" id="btn-living-render" onclick="setVisualMode('living', 'render')">3D Render</button>
+                <button class="view-tab-btn" id="btn-living-ref1" onclick="setVisualMode('living', 'ref1')">TV Ref</button>
+                <button class="view-tab-btn" id="btn-living-ref2" onclick="setVisualMode('living', 'ref2')">Sofa Ref</button>
+                <button class="view-tab-btn" id="btn-living-ref3" onclick="setVisualMode('living', 'ref3')">Ceiling Ref</button>
+              </div>
+            </div>
+            
+            <!-- Before/After interactive slider -->
+            <div class="slider-wrapper" id="living-slider-container">
+              <img class="slider-image before" src="My interior selected images/upscaled/Hall TV Unit (back ground will be a wall paper).jpg" alt="TV Unit Reference">
+              <img class="slider-image after" id="living-slider-after" src="generated_renders/living.png" alt="Living 3D Render">
+              <div class="slider-bar" id="living-slider-bar"></div>
+              <div class="slider-handle" id="living-slider-handle">↔</div>
+              <div class="slider-badge before-badge">Reference</div>
+              <div class="slider-badge after-badge">3D Render</div>
+              <input type="range" min="0" max="100" value="50" class="slider-range-input" oninput="handleSlider(this, 'living')">
+            </div>
+            
+            <!-- Standard Image Container for individual views -->
+            <div class="image-container" id="living-img-container" onclick="zoomImage(this)">
+              <img id="living-img-render" src="generated_renders/living.png" alt="Living Room 3D Render">
+              <img id="living-img-ref1" src="My interior selected images/upscaled/Hall TV Unit (back ground will be a wall paper).jpg" alt="TV console and open towers reference">
+              <img id="living-img-ref2" src="My interior selected images/upscaled/Hall SOfa back side wall Design.jpg" alt="Sofa wall accent panels reference">
+              <img id="living-img-ref3" src="My interior selected images/upscaled/Fall ceiling 1.jpg" alt="Gypsum false ceiling step design reference">
+            </div>
+            
+            <div class="image-caption" id="living-caption">Interactive Before/After Slider — TV unit and wall design layout</div>
+          </div>
+          
+          <div class="reference-gallery">
+            <div class="ref-thumbnail active" onclick="setVisualMode('living', 'slider')"><img src="generated_renders/living.png" alt="Slider"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('living', 'render')"><img src="generated_renders/living.png" alt="Render"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('living', 'ref1')"><img src="My interior selected images/upscaled/Hall TV Unit (back ground will be a wall paper).jpg" alt="TV Ref"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('living', 'ref2')"><img src="My interior selected images/upscaled/Hall SOfa back side wall Design.jpg" alt="Sofa Ref"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('living', 'ref3')"><img src="My interior selected images/upscaled/Fall ceiling 1.jpg" alt="Ceiling Ref"></div>
+          </div>
+        </div>
+        
+        <div class="detail-panel">
+          <div class="brief-card">
+            <div class="brief-badge">WHAT'S BEING BUILT</div>
+            <ul>
+              <li>Floating, low-profile TV console cabinet (approx. 6' wide by 1.33' tall, 8 SFT total area), made of dark walnut wood.</li>
+              <li>Floating side open shelving unit (approx. 1.75' wide by 4' tall, 7 SFT total) next to the TV.</li>
+              <li>Textured wallpaper installed on the backing wall of the TV unit console.</li>
+              <li>Elegant wood-panelling accent on the Sofa back wall.</li>
+              <li>Gypsum false ceiling step profile with warm cove LED lights (see ceiling option 1).</li>
+            </ul>
+          </div>
+          
+          <div class="cost-table-card">
+            <div class="card-header">
+              <span>Carpentry Cost Details</span>
+              <span class="dimension-badge">Low-Height Floating Base Console</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Unit Item</th>
+                  <th>Type</th>
+                  <th style="text-align:right">SFT</th>
+                  <th style="text-align:right">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>TV Base Console</td>
+                  <td>Closed Unit</td>
+                  <td class="sft">8.00</td>
+                  <td class="amount">₹15,192</td>
+                </tr>
+                <tr>
+                  <td>TV Side Open Storage</td>
+                  <td>Open Unit</td>
+                  <td class="sft">7.00</td>
+                  <td class="amount">₹10,829</td>
+                </tr>
+                <tr>
+                  <td>TV Back Panel</td>
+                  <td>Wallpaper</td>
+                  <td class="sft">1x50</td>
+                  <td class="amount">₹9,725</td>
+                </tr>
+                <tr class="subtotal-row">
+                  <td colspan="3">Living Subtotal</td>
+                  <td class="amount">₹35,746</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="material-note">
+              <strong>Materials:</strong> MR Grade Century Sainik plywood. <br>
+              <strong>Hardware:</strong> Hettich soft-closure drawer slides. <br>
+              <strong>Wallpaper:</strong> Wallpaper material, adhesives, and labor included in multiples of 50 sft.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 DINING ROOM -->
+    <section class="room-section" id="sec-dining">
+      <header class="main-header">
+        <div class="header-info">
+          <h1>Dining Room</h1>
+          <p>
+            <span>Unit: <strong>Flat 902 · Block B</strong></span>
+            <span>Area: <strong>Crockery Unit & Accent Wall</strong></span>
+          </p>
+        </div>
+        <div class="header-actions">
+          <div class="cost-badge">
+            <span class="cost-badge-label">Room Subtotal</span>
+            <span class="cost-badge-value">₹37,268</span>
+          </div>
+        </div>
+      </header>
+      
+      <div class="visual-grid">
+        <div>
+          <div class="render-card">
+            <div class="render-header">
+              <div class="render-title">Dining Room Visuals</div>
+              <div class="view-tabs">
+                <button class="view-tab-btn active" id="btn-dining-slider" onclick="setVisualMode('dining', 'slider')">Before / After</button>
+                <button class="view-tab-btn" id="btn-dining-render" onclick="setVisualMode('dining', 'render')">3D Render</button>
+                <button class="view-tab-btn" id="btn-dining-ref1" onclick="setVisualMode('dining', 'ref1')">Crockery Ref</button>
+                <button class="view-tab-btn" id="btn-dining-ref2" onclick="setVisualMode('dining', 'ref2')">Ceiling Ref</button>
+              </div>
+            </div>
+            
+            <!-- Before/After interactive slider -->
+            <div class="slider-wrapper" id="dining-slider-container">
+              <img class="slider-image before" src="My interior selected images/upscaled/Crokery Unit at Pooja place.jpg" alt="Crockery Unit Reference">
+              <img class="slider-image after" id="dining-slider-after" src="generated_renders/dining.png" alt="Dining 3D Render">
+              <div class="slider-bar" id="dining-slider-bar"></div>
+              <div class="slider-handle" id="dining-slider-handle">↔</div>
+              <div class="slider-badge before-badge">Reference</div>
+              <div class="slider-badge after-badge">3D Render</div>
+              <input type="range" min="0" max="100" value="50" class="slider-range-input" oninput="handleSlider(this, 'dining')">
+            </div>
+            
+            <!-- Standard Image Container for individual views -->
+            <div class="image-container" id="dining-img-container" onclick="zoomImage(this)">
+              <img id="dining-img-render" src="generated_renders/dining.png" alt="Dining Room 3D Render">
+              <img id="dining-img-ref1" src="My interior selected images/upscaled/Crokery Unit at Pooja place.jpg" alt="Crockery sideboard console reference">
+              <img id="dining-img-ref2" src="My interior selected images/upscaled/Dining Hall cieling art.jpg" alt="Dining ceiling accent panel reference">
+            </div>
+            
+            <div class="image-caption" id="dining-caption">Interactive Before/After Slider — Dining crockery console layout</div>
+          </div>
+          
+          <div class="reference-gallery">
+            <div class="ref-thumbnail active" onclick="setVisualMode('dining', 'slider')"><img src="generated_renders/dining.png" alt="Slider"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('dining', 'render')"><img src="generated_renders/dining.png" alt="Render"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('dining', 'ref1')"><img src="My interior selected images/upscaled/Crokery Unit at Pooja place.jpg" alt="Crockery Ref"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('dining', 'ref2')"><img src="My interior selected images/upscaled/Dining Hall cieling art.jpg" alt="Ceiling Ref"></div>
+          </div>
+        </div>
+        
+        <div class="detail-panel">
+          <div class="brief-card">
+            <div class="brief-badge">WHAT'S BEING BUILT</div>
+            <ul>
+              <li>Waist-high, low-profile crockery console unit (approx. 4' wide by 3' tall, 12 SFT total area), featuring arched glass doors.</li>
+              <li>Wood-panelled vertical accent strip (approx. 2' wide by 8' tall, 16 SFT total) on the dining room wall.</li>
+              <li>Centered geometric ceiling art wood panel above the dining table.</li>
+            </ul>
+          </div>
+          
+          <div class="cost-table-card">
+            <div class="card-header">
+              <span>Carpentry Cost Details</span>
+              <span class="dimension-badge">Waist-High Sideboard Console</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Unit Item</th>
+                  <th>Type</th>
+                  <th style="text-align:right">SFT</th>
+                  <th style="text-align:right">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Crockery Base console</td>
+                  <td>Closed Unit</td>
+                  <td class="sft">12.00</td>
+                  <td class="amount">₹22,788</td>
+                </tr>
+                <tr>
+                  <td>Dining Wall Panelling</td>
+                  <td>Panelling</td>
+                  <td class="sft">16.00</td>
+                  <td class="amount">₹14,480</td>
+                </tr>
+                <tr class="subtotal-row">
+                  <td colspan="3">Dining Subtotal</td>
+                  <td class="amount">₹37,268</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="material-note">
+              <strong>Materials:</strong> Century Sainik MR Grade plywood. <br>
+              <strong>Hardware:</strong> Hettich soft-closure hinges, custom handles, and glass panel shutters.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 POOJA ROOM -->
+    <section class="room-section" id="sec-pooja">
+      <header class="main-header">
+        <div class="header-info">
+          <h1>Pooja Room</h1>
+          <p>
+            <span>Unit: <strong>Flat 902 · Block B</strong></span>
+            <span>Area: <strong>Pooja Niche Nook</strong></span>
+          </p>
+        </div>
+        <div class="header-actions">
+          <div class="cost-badge">
+            <span class="cost-badge-label">Room Subtotal</span>
+            <span class="cost-badge-value">₹32,715</span>
+          </div>
+        </div>
+      </header>
+      
+      <div class="visual-grid">
+        <div>
+          <div class="render-card">
+            <div class="render-header">
+              <div class="render-title">Pooja Room Visuals</div>
+              <div class="view-tabs">
+                <button class="view-tab-btn active" id="btn-pooja-slider" onclick="setVisualMode('pooja', 'slider')">Before / After</button>
+                <button class="view-tab-btn" id="btn-pooja-render" onclick="setVisualMode('pooja', 'render')">3D Render</button>
+                <button class="view-tab-btn" id="btn-pooja-ref1" onclick="setVisualMode('pooja', 'ref1')">Reference</button>
+              </div>
+            </div>
+            
+            <!-- Before/After interactive slider -->
+            <div class="slider-wrapper" id="pooja-slider-container">
+              <img class="slider-image before" src="My interior selected images/upscaled/Pooja left to kitchen.jpg" alt="Pooja Reference">
+              <img class="slider-image after" id="pooja-slider-after" src="generated_renders/pooja.png" alt="Pooja 3D Render">
+              <div class="slider-bar" id="pooja-slider-bar"></div>
+              <div class="slider-handle" id="pooja-slider-handle">↔</div>
+              <div class="slider-badge before-badge">Reference</div>
+              <div class="slider-badge after-badge">3D Render</div>
+              <input type="range" min="0" max="100" value="50" class="slider-range-input" oninput="handleSlider(this, 'pooja')">
+            </div>
+            
+            <!-- Standard Image Container for individual views -->
+            <div class="image-container" id="pooja-img-container" onclick="zoomImage(this)">
+              <img id="pooja-img-render" src="generated_renders/pooja.png" alt="Pooja Room 3D Render">
+              <img id="pooja-img-ref1" src="My interior selected images/upscaled/Pooja left to kitchen.jpg" alt="Pooja wood cabinet niche reference">
+            </div>
+            
+            <div class="image-caption" id="pooja-caption">Interactive Before/After Slider — Pooja doors and niche layout</div>
+          </div>
+          
+          <div class="reference-gallery">
+            <div class="ref-thumbnail active" onclick="setVisualMode('pooja', 'slider')"><img src="generated_renders/pooja.png" alt="Slider"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('pooja', 'render')"><img src="generated_renders/pooja.png" alt="Render"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('pooja', 'ref1')"><img src="My interior selected images/upscaled/Pooja left to kitchen.jpg" alt="Pooja Ref"></div>
+          </div>
+        </div>
+        
+        <div class="detail-panel">
+          <div class="brief-card">
+            <div class="brief-badge">WHAT'S BEING BUILT</div>
+            <ul>
+              <li>Low-height wood Pooja base console cabinet (approx. 3' wide by 2' tall, 6 SFT total area) inside the wall niche.</li>
+              <li>Full-height double wooden doors (approx. 3' wide by 7' tall, 21 SFT total area) with beautiful CNC-cut jaali patterns.</li>
+              <li>Warm orange-gold textured paint on the back accent wall (12 SFT area).</li>
+            </ul>
+          </div>
+          
+          <div class="cost-table-card">
+            <div class="card-header">
+              <span>Carpentry & Painting Details</span>
+              <span class="dimension-badge">Low Niche Base + Full-Height Doors</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Unit Item</th>
+                  <th>Type</th>
+                  <th style="text-align:right">SFT</th>
+                  <th style="text-align:right">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Pooja Base Console</td>
+                  <td>Closed Unit</td>
+                  <td class="sft">6.00</td>
+                  <td class="amount">₹11,394</td>
+                </tr>
+                <tr>
+                  <td>CNC Decorative Doors</td>
+                  <td>Panelling / Doors</td>
+                  <td class="sft">21.00</td>
+                  <td class="amount">₹19,005</td>
+                </tr>
+                <tr>
+                  <td>Pooja Wall Painting</td>
+                  <td>Texture Paint</td>
+                  <td class="sft">12.00</td>
+                  <td class="amount">₹2,316</td>
+                </tr>
+                <tr class="subtotal-row">
+                  <td colspan="3">Pooja Subtotal</td>
+                  <td class="amount">₹32,715</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="material-note">
+              <strong>Materials:</strong> 12mm & 16mm Century Sainik MR Grade plywood. <br>
+              <strong>Painting:</strong> Asian Paint premium texture paint. <br>
+              <strong>Hardware:</strong> Hettich soft-closure hinges.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 KITCHEN -->
+    <section class="room-section" id="sec-kitchen">
+      <header class="main-header">
+        <div class="header-info">
+          <h1>Modular Kitchen</h1>
+          <p>
+            <span>Unit: <strong>Flat 902 · Block B</strong></span>
+            <span>Area: <strong>L-Shaped Kitchen Layout</strong></span>
+          </p>
+        </div>
+        <div class="header-actions">
+          <div class="cost-badge">
+            <span class="cost-badge-label">Room Subtotal</span>
+            <span class="cost-badge-value">₹2,23,817</span>
+          </div>
+        </div>
+      </header>
+      
+      <div class="visual-grid">
+        <div>
+          <div class="render-card">
+            <div class="render-header">
+              <div class="render-title">Kitchen Visuals</div>
+              <div class="view-tabs">
+                <button class="view-tab-btn active" id="btn-kitchen-slider" onclick="setVisualMode('kitchen', 'slider')">Before / After</button>
+                <button class="view-tab-btn" id="btn-kitchen-render" onclick="setVisualMode('kitchen', 'render')">3D Render</button>
+                <button class="view-tab-btn" id="btn-kitchen-ref1" onclick="setVisualMode('kitchen', 'ref1')">Main Counter</button>
+                <button class="view-tab-btn" id="btn-kitchen-ref2" onclick="setVisualMode('kitchen', 'ref2')">Opposite Counter</button>
+              </div>
+            </div>
+            
+            <!-- Before/After interactive slider -->
+            <div class="slider-wrapper" id="kitchen-slider-container">
+              <img class="slider-image before" src="My interior selected images/upscaled/Kitchen 1.jpg" alt="Kitchen Main Counter Reference">
+              <img class="slider-image after" id="kitchen-slider-after" src="generated_renders/kitchen.png" alt="Kitchen 3D Render">
+              <div class="slider-bar" id="kitchen-slider-bar"></div>
+              <div class="slider-handle" id="kitchen-slider-handle">↔</div>
+              <div class="slider-badge before-badge">Reference</div>
+              <div class="slider-badge after-badge">3D Render</div>
+              <input type="range" min="0" max="100" value="50" class="slider-range-input" oninput="handleSlider(this, 'kitchen')">
+            </div>
+            
+            <!-- Standard Image Container for individual views -->
+            <div class="image-container" id="kitchen-img-container" onclick="zoomImage(this)">
+              <img id="kitchen-img-render" src="generated_renders/kitchen.png" alt="Kitchen 3D Render">
+              <img id="kitchen-img-ref1" src="My interior selected images/upscaled/Kitchen 1.jpg" alt="Kitchen main counter reference">
+              <img id="kitchen-img-ref2" src="My interior selected images/upscaled/Kitchen  opposite.jpg" alt="Kitchen opposite wall details reference">
+            </div>
+            
+            <div class="image-caption" id="kitchen-caption">Interactive Before/After Slider — Modular kitchen woodwork visual</div>
+          </div>
+          
+          <div class="reference-gallery">
+            <div class="ref-thumbnail active" onclick="setVisualMode('kitchen', 'slider')"><img src="generated_renders/kitchen.png" alt="Slider"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('kitchen', 'render')"><img src="generated_renders/kitchen.png" alt="Render"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('kitchen', 'ref1')"><img src="My interior selected images/upscaled/Kitchen 1.jpg" alt="Main Ref"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('kitchen', 'ref2')"><img src="My interior selected images/upscaled/Kitchen  opposite.jpg" alt="Opposite Ref"></div>
+          </div>
+        </div>
+        
+        <div class="detail-panel">
+          <div class="brief-card">
+            <div class="brief-badge">WHAT'S BEING BUILT</div>
+            <ul>
+              <li>Waterproof L-shaped under-counter base cabinets (approx. 2.75' high, 45.76 SFT total), BWP-grade.</li>
+              <li>Wall-mounted top storage cabinets (approx. 2' high, 23.2 SFT total) in light wood laminate.</li>
+              <li>Overhead loft storage cabinets (35.2 SFT total area) stretching up to the kitchen ceiling.</li>
+              <li>Premium handle-less look with integrated Gola profile aluminum handles.</li>
+              <li>Hettich accessories: tandem pot drawers, wire thali baskets, cutlery shelf, bottle organizer.</li>
+            </ul>
+          </div>
+          
+          <div class="cost-table-card">
+            <div class="card-header">
+              <span>Carpentry & Hardware Cost Details</span>
+              <span class="dimension-badge">BWP Base + MR Top/Loft</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Unit Item</th>
+                  <th>Type</th>
+                  <th style="text-align:right">SFT/Qty</th>
+                  <th style="text-align:right">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Base Cabinets (BWP)</td>
+                  <td>Closed Unit</td>
+                  <td class="sft">45.76</td>
+                  <td class="amount">₹98,430</td>
+                </tr>
+                <tr>
+                  <td>Top Cabinets (MR)</td>
+                  <td>Closed Unit</td>
+                  <td class="sft">23.20</td>
+                  <td class="amount">₹44,057</td>
+                </tr>
+                <tr>
+                  <td>Loft Storage (MR)</td>
+                  <td>Loft</td>
+                  <td class="sft">35.20</td>
+                  <td class="amount">₹38,403</td>
+                </tr>
+                <tr>
+                  <td>Tandem Box (Pot & Pan)</td>
+                  <td>Accessory (Hettich)</td>
+                  <td class="sft">1 unit</td>
+                  <td class="amount">₹10,146</td>
+                </tr>
+                <tr>
+                  <td>Wire Basket w/ Thali Inlet</td>
+                  <td>Accessory (Hettich)</td>
+                  <td class="sft">2 units</td>
+                  <td class="amount">₹10,050</td>
+                </tr>
+                <tr>
+                  <td>Cutlery Drawer Tray</td>
+                  <td>Accessory (Hettich)</td>
+                  <td class="sft">1 unit</td>
+                  <td class="amount">₹9,880</td>
+                </tr>
+                <tr>
+                  <td>Bottle Pull-Out Unit</td>
+                  <td>Accessory (Hettich)</td>
+                  <td class="sft">1 unit</td>
+                  <td class="amount">₹7,925</td>
+                </tr>
+                <tr>
+                  <td>Gola Profile Handles</td>
+                  <td>Accessory (Channels)</td>
+                  <td class="sft">2 units</td>
+                  <td class="amount">₹4,926</td>
+                </tr>
+                <tr class="subtotal-row">
+                  <td colspan="3">Kitchen Subtotal</td>
+                  <td class="amount">₹223,817</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="material-note">
+              <strong>Materials:</strong> BWP Grade waterproof plywood for base unit carcass, MR Grade for top/lofts. <br>
+              <strong>Hardware:</strong> All sliding drawers and functional organizers are Hettich brand.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 MASTER BEDROOM (BR-1) -->
+    <section class="room-section" id="sec-br1">
+      <header class="main-header">
+        <div class="header-info">
+          <h1>Master Bedroom</h1>
+          <p>
+            <span>Unit: <strong>Flat 902 · Block B</strong></span>
+            <span>Area: <strong>BR-1 · Wardrobes & Dressing Table</strong></span>
+          </p>
+        </div>
+        <div class="header-actions">
+          <div class="cost-badge">
+            <span class="cost-badge-label">Room Subtotal</span>
+            <span class="cost-badge-value">₹2,21,895</span>
+          </div>
+        </div>
+      </header>
+      
+      <div class="visual-grid">
+        <div>
+          <div class="render-card">
+            <div class="render-header">
+              <div class="render-title">Master Bedroom Visuals</div>
+              <div class="view-tabs">
+                <button class="view-tab-btn active" id="btn-br1-slider" onclick="setVisualMode('br1', 'slider')">Before / After</button>
+                <button class="view-tab-btn" id="btn-br1-render" onclick="setVisualMode('br1', 'render')">3D Render</button>
+                <button class="view-tab-btn" id="btn-br1-ref1" onclick="setVisualMode('br1', 'ref1')">Wardrobe Ref</button>
+                <button class="view-tab-btn" id="btn-br1-ref2" onclick="setVisualMode('br1', 'ref2')">Dressing Ref</button>
+              </div>
+            </div>
+            
+            <!-- Before/After interactive slider -->
+            <div class="slider-wrapper" id="br1-slider-container">
+              <img class="slider-image before" src="My interior selected images/upscaled/Master Bedroommwardroab.jpg" alt="Wardrobe Reference">
+              <img class="slider-image after" id="br1-slider-after" src="generated_renders/master_bedroom.png" alt="Master Bed 3D Render">
+              <div class="slider-bar" id="br1-slider-bar"></div>
+              <div class="slider-handle" id="br1-slider-handle">↔</div>
+              <div class="slider-badge before-badge">Reference</div>
+              <div class="slider-badge after-badge">3D Render</div>
+              <input type="range" min="0" max="100" value="50" class="slider-range-input" oninput="handleSlider(this, 'br1')">
+            </div>
+            
+            <!-- Standard Image Container for individual views -->
+            <div class="image-container" id="br1-img-container" onclick="zoomImage(this)">
+              <img id="br1-img-render" src="generated_renders/master_bedroom.png" alt="Master Bedroom 3D Render">
+              <img id="br1-img-ref1" src="My interior selected images/upscaled/Master Bedroommwardroab.jpg" alt="Master bed wardrobe design reference">
+              <img id="br1-img-ref2" src="My interior selected images/upscaled/Master bedroom Dressing table.jpg" alt="Dressing table and mirror design reference">
+            </div>
+            
+            <div class="image-caption" id="br1-caption">Interactive Before/After Slider — Master bed wardrobe & bed setup</div>
+          </div>
+          
+          <div class="reference-gallery">
+            <div class="ref-thumbnail active" onclick="setVisualMode('br1', 'slider')"><img src="generated_renders/master_bedroom.png" alt="Slider"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('br1', 'render')"><img src="generated_renders/master_bedroom.png" alt="Render"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('br1', 'ref1')"><img src="My interior selected images/upscaled/Master Bedroommwardroab.jpg" alt="Wardrobe Ref"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('br1', 'ref2')"><img src="My interior selected images/upscaled/Master bedroom Dressing table.jpg" alt="Dressing Ref"></div>
+          </div>
+        </div>
+        
+        <div class="detail-panel">
+          <div class="brief-card">
+            <div class="brief-badge">WHAT'S BEING BUILT</div>
+            <ul>
+              <li>Built-in floor-to-ceiling wardrobe (approx. 7' wide by 8' tall, 56 SFT total area) in oak laminate.</li>
+              <li>Wardrobe overhead loft cabinets (approx. 7' wide by 2.3' tall, 16 SFT total area) stretching to the ceiling.</li>
+              <li>Dressing console cabinet (approx. 2' wide by 3' tall, 6 SFT) with an 8 SFT vertical backlit mirror panel.</li>
+              <li>Tall side storage cabinet next to the dressing table (approx. 1.5' wide by 4' tall, 6 SFT).</li>
+              <li>King-size bed with built-in hydraulic storage drawers and tufted grey headboard.</li>
+            </ul>
+          </div>
+          
+          <div class="cost-table-card">
+            <div class="card-header">
+              <span>Carpentry Cost Details</span>
+              <span class="dimension-badge">Standard Tall Wardrobe & Dressing Layout</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Unit Item</th>
+                  <th>Type</th>
+                  <th style="text-align:right">SFT/Qty</th>
+                  <th style="text-align:right">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Wardrobe Cabinet</td>
+                  <td>Closed Unit</td>
+                  <td class="sft">56.00</td>
+                  <td class="amount">₹106,344</td>
+                </tr>
+                <tr>
+                  <td>Wardrobe Loft</td>
+                  <td>Loft</td>
+                  <td class="sft">16.00</td>
+                  <td class="amount">₹17,456</td>
+                </tr>
+                <tr>
+                  <td>Dressing Console</td>
+                  <td>Closed Unit</td>
+                  <td class="sft">6.00</td>
+                  <td class="amount">₹11,394</td>
+                </tr>
+                <tr>
+                  <td>Backlit Mirror panel</td>
+                  <td>Mirror</td>
+                  <td class="sft">8.00</td>
+                  <td class="amount">₹11,400</td>
+                </tr>
+                <tr>
+                  <td>Tall Cabinet (Dressing)</td>
+                  <td>Closed Unit</td>
+                  <td class="sft">6.00</td>
+                  <td class="amount">₹11,394</td>
+                </tr>
+                <tr>
+                  <td>Study wall Panelling</td>
+                  <td>Panelling</td>
+                  <td class="sft">4.50</td>
+                  <td class="amount">₹4,073</td>
+                </tr>
+                <tr>
+                  <td>King Size Storage Bed</td>
+                  <td>Bed</td>
+                  <td class="sft">1 unit</td>
+                  <td class="amount">₹59,834</td>
+                </tr>
+                <tr class="subtotal-row">
+                  <td colspan="3">Master Bed Subtotal</td>
+                  <td class="amount">₹221,895</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="material-note">
+              <strong>Materials:</strong> MR Grade Century Sainik plywood. <br>
+              <strong>Mirror:</strong> Ozone / Saint Gobain silver mirror with LED backing. <br>
+              <strong>Bed:</strong> Heavy duty hydraulic frame with soft fabric upholstery.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 KIDS BEDROOM (BR-2) -->
+    <section class="room-section" id="sec-br2">
+      <header class="main-header">
+        <div class="header-info">
+          <h1>Kids Bedroom</h1>
+          <p>
+            <span>Unit: <strong>Flat 902 · Block B</strong></span>
+            <span>Area: <strong>BR-2 · Wardrobes & Study Desk</strong></span>
+          </p>
+        </div>
+        <div class="header-actions">
+          <div class="cost-badge">
+            <span class="cost-badge-label">Room Subtotal</span>
+            <span class="cost-badge-value">₹1,68,404</span>
+          </div>
+        </div>
+      </header>
+      
+      <div class="visual-grid">
+        <div>
+          <div class="render-card">
+            <div class="render-header">
+              <div class="render-title">Kids Bedroom Visuals</div>
+              <div class="view-tabs">
+                <button class="view-tab-btn active" id="btn-br2-slider" onclick="setVisualMode('br2', 'slider')">Before / After</button>
+                <button class="view-tab-btn" id="btn-br2-render" onclick="setVisualMode('br2', 'render')">3D Render</button>
+                <button class="view-tab-btn" id="btn-br2-ref1" onclick="setVisualMode('br2', 'ref1')">Wardrobe Ref</button>
+                <button class="view-tab-btn" id="btn-br2-ref2" onclick="setVisualMode('br2', 'ref2')">Study Ref</button>
+              </div>
+            </div>
+            
+            <!-- Before/After interactive slider -->
+            <div class="slider-wrapper" id="br2-slider-container">
+              <img class="slider-image before" src="My interior selected images/upscaled/kids bedroom Wardroab.jpg" alt="Kids Wardrobe Reference">
+              <img class="slider-image after" id="br2-slider-after" src="generated_renders/kids_bedroom.png" alt="Kids Bed 3D Render">
+              <div class="slider-bar" id="br2-slider-bar"></div>
+              <div class="slider-handle" id="br2-slider-handle">↔</div>
+              <div class="slider-badge before-badge">Reference</div>
+              <div class="slider-badge after-badge">3D Render</div>
+              <input type="range" min="0" max="100" value="50" class="slider-range-input" oninput="handleSlider(this, 'br2')">
+            </div>
+            
+            <!-- Standard Image Container for individual views -->
+            <div class="image-container" id="br2-img-container" onclick="zoomImage(this)">
+              <img id="br2-img-render" src="generated_renders/kids_bedroom.png" alt="Kids Bedroom 3D Render">
+              <img id="br2-img-ref1" src="My interior selected images/upscaled/kids bedroom Wardroab.jpg" alt="Kids wardrobe reference with open sections">
+              <img id="br2-img-ref2" src="My interior selected images/upscaled/kids roon Steady Unit.jpg" alt="Study desk and wall storage reference">
+            </div>
+            
+            <div class="image-caption" id="br2-caption">Interactive Before/After Slider — Kids bedroom study and wardrobe design</div>
+          </div>
+          
+          <div class="reference-gallery">
+            <div class="ref-thumbnail active" onclick="setVisualMode('br2', 'slider')"><img src="generated_renders/kids_bedroom.png" alt="Slider"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('br2', 'render')"><img src="generated_renders/kids_bedroom.png" alt="Render"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('br2', 'ref1')"><img src="My interior selected images/upscaled/kids bedroom Wardroab.jpg" alt="Wardrobe Ref"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('br2', 'ref2')"><img src="My interior selected images/upscaled/kids roon Steady Unit.jpg" alt="Study Ref"></div>
+          </div>
+        </div>
+        
+        <div class="detail-panel">
+          <div class="brief-card">
+            <div class="brief-badge">WHAT'S BEING BUILT</div>
+            <ul>
+              <li>Built-in wardrobe (approx. 5.25' wide by 8' tall, 42 SFT total) with open book compartments and wood laminate.</li>
+              <li>Wardrobe overhead loft cabinets (approx. 5.25' wide by 2.3' tall, 12 SFT total area) stretching to the ceiling.</li>
+              <li>Study desk base drawers unit (approx. 3' wide by 1.5' tall, 4.5 SFT total area).</li>
+              <li>Study desk top wall shelves & cabinets (approx. 3' wide by 2' tall, 6 SFT total).</li>
+              <li>Queen-size bed with built-in hydraulic storage system and cushioned fabric headboard.</li>
+            </ul>
+          </div>
+          
+          <div class="cost-table-card">
+            <div class="card-header">
+              <span>Carpentry Cost Details</span>
+              <span class="dimension-badge">Custom Desk & Wardrobe Proportions</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Unit Item</th>
+                  <th>Type</th>
+                  <th style="text-align:right">SFT/Qty</th>
+                  <th style="text-align:right">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Wardrobe Cabinet</td>
+                  <td>Closed Unit</td>
+                  <td class="sft">42.00</td>
+                  <td class="amount">₹79,758</td>
+                </tr>
+                <tr>
+                  <td>Wardrobe Loft</td>
+                  <td>Loft</td>
+                  <td class="sft">12.00</td>
+                  <td class="amount">₹13,092</td>
+                </tr>
+                <tr>
+                  <td>Study Desk Base</td>
+                  <td>Closed Unit</td>
+                  <td class="sft">4.50</td>
+                  <td class="amount">₹8,546</td>
+                </tr>
+                <tr>
+                  <td>Study Desk Top Shelves</td>
+                  <td>Closed Unit</td>
+                  <td class="sft">6.00</td>
+                  <td class="amount">₹11,394</td>
+                </tr>
+                <tr>
+                  <td>Queen Size Storage Bed</td>
+                  <td>Bed</td>
+                  <td class="sft">1 unit</td>
+                  <td class="amount">₹50,764</td>
+                </tr>
+                <tr>
+                  <td>Dressing Mirror (plain)</td>
+                  <td>Mirror</td>
+                  <td class="sft">10.00</td>
+                  <td class="amount">₹4,850</td>
+                </tr>
+                <tr class="subtotal-row">
+                  <td colspan="3">Kids Bed Subtotal</td>
+                  <td class="amount">₹168,404</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="material-note">
+              <strong>Materials:</strong> MR Grade Century Sainik plywood. <br>
+              <strong>Hardware:</strong> Hettich soft-closure hinges. <br>
+              <strong>Mirror:</strong> Plain dresser mirror (no backing panel).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 WASH BASIN -->
+    <section class="room-section" id="sec-washbasin">
+      <header class="main-header">
+        <div class="header-info">
+          <h1>Wash Basin Area</h1>
+          <p>
+            <span>Unit: <strong>Flat 902 · Block B</strong></span>
+            <span>Area: <strong>Vanity & Mirror</strong></span>
+          </p>
+        </div>
+        <div class="header-actions">
+          <div class="cost-badge">
+            <span class="cost-badge-label">Room Subtotal</span>
+            <span class="cost-badge-value">TBD</span>
+          </div>
+        </div>
+      </header>
+      
+      <div class="visual-grid">
+        <div>
+          <div class="render-card">
+            <div class="render-header">
+              <div class="render-title">Wash Basin Visuals</div>
+              <div class="view-tabs">
+                <button class="view-tab-btn active" id="btn-washbasin-slider" onclick="setVisualMode('washbasin', 'slider')">Before / After</button>
+                <button class="view-tab-btn" id="btn-washbasin-render" onclick="setVisualMode('washbasin', 'render')">3D Render</button>
+                <button class="view-tab-btn" id="btn-washbasin-ref1" onclick="setVisualMode('washbasin', 'ref1')">Reference</button>
+              </div>
+            </div>
+            
+            <!-- Before/After interactive slider -->
+            <div class="slider-wrapper" id="washbasin-slider-container">
+              <img class="slider-image before" src="My interior selected images/upscaled/Wash Basin with wardroabs.jpg" alt="Wash Basin Reference">
+              <img class="slider-image after" id="washbasin-slider-after" src="generated_renders/wash_basin.png" alt="Wash Basin 3D Render">
+              <div class="slider-bar" id="washbasin-slider-bar"></div>
+              <div class="slider-handle" id="washbasin-slider-handle">↔</div>
+              <div class="slider-badge before-badge">Reference</div>
+              <div class="slider-badge after-badge">3D Render</div>
+              <input type="range" min="0" max="100" value="50" class="slider-range-input" oninput="handleSlider(this, 'washbasin')">
+            </div>
+            
+            <!-- Standard Image Container for individual views -->
+            <div class="image-container" id="washbasin-img-container" onclick="zoomImage(this)">
+              <img id="washbasin-img-render" src="generated_renders/wash_basin.png" alt="Wash Basin 3D Render">
+              <img id="washbasin-img-ref1" src="My interior selected images/upscaled/Wash Basin with wardroabs.jpg" alt="Wash basin vanity counter reference">
+            </div>
+            
+            <div class="image-caption" id="washbasin-caption">Interactive Before/After Slider — Vanity cabinet layout details</div>
+          </div>
+          
+          <div class="reference-gallery">
+            <div class="ref-thumbnail active" onclick="setVisualMode('washbasin', 'slider')"><img src="generated_renders/wash_basin.png" alt="Slider"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('washbasin', 'render')"><img src="generated_renders/wash_basin.png" alt="Render"></div>
+            <div class="ref-thumbnail" onclick="setVisualMode('washbasin', 'ref1')"><img src="My interior selected images/upscaled/Wash Basin with wardroabs.jpg" alt="Wash Basin Ref"></div>
+          </div>
+        </div>
+        
+        <div class="detail-panel">
+          <div class="brief-card">
+            <div class="brief-badge">WHAT'S BEING BUILT</div>
+            <ul>
+              <li>Modern ceramic wash basin resting on a custom-designed wooden vanity cabinet.</li>
+              <li>Under-sink storage cabinet featuring moisture-resistant shutters and drawers.</li>
+              <li>Large circular backlit mirror panel with warm vanity lighting.</li>
+              <li>Integrated side shelves in wood finish for hand soap and bathroom items.</li>
+            </ul>
+          </div>
+          
+          <div class="cost-table-card">
+            <div class="card-header">
+              <span>Carpentry Cost Details</span>
+              <span class="dimension-badge">Vanity Counter & Mirror Setup</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Unit Item</th>
+                  <th>Type</th>
+                  <th style="text-align:right">SFT/Qty</th>
+                  <th style="text-align:right">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Wash Basin Vanity Counter</td>
+                  <td>Under-counter Storage</td>
+                  <td class="sft">TBD</td>
+                  <td class="amount">On Actuals</td>
+                </tr>
+                <tr>
+                  <td>Circular Backlit Mirror</td>
+                  <td>Mirror & Shelves</td>
+                  <td class="sft">TBD</td>
+                  <td class="amount">On Actuals</td>
+                </tr>
+                <tr class="subtotal-row">
+                  <td colspan="3">Wash Basin Subtotal</td>
+                  <td class="amount">On Actuals</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="material-note">
+              <strong>Materials:</strong> Waterproof BWP plywood for vanity cabinet, premium laminate finish, backlit LED mirror.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUMMARY BUDGET PAGE -->
+    <section class="room-section" id="sec-summary">
+      <header class="main-header">
+        <div class="header-info">
+          <h1>Estimation Summary</h1>
+          <p>
+            <span>Quote Sourced: <strong>Reminiscent Interior Design</strong></span>
+            <span>Date: <strong>08 Jun 2026</strong></span>
+          </p>
+        </div>
+      </header>
+      
+      <div class="summary-card">
+        <h2 class="summary-title">Flat 902 Interior Budget Map</h2>
+        
+        <div class="summary-grid">
+          <div>
+            <table class="summary-table">
+              <thead>
+                <tr>
+                  <th>Room Space</th>
+                  <th style="text-align:right">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Foyer Entry</td>
+                  <td class="amount">₹18,516</td>
+                </tr>
+                <tr>
+                  <td>Living Room</td>
+                  <td class="amount">₹35,746</td>
+                </tr>
+                <tr>
+                  <td>Dining Room</td>
+                  <td class="amount">₹37,268</td>
+                </tr>
+                <tr>
+                  <td>Pooja Room</td>
+                  <td class="amount">₹32,715</td>
+                </tr>
+                <tr>
+                  <td>Modular Kitchen</td>
+                  <td class="amount">₹2,23,817</td>
+                </tr>
+                <tr>
+                  <td>Master Bedroom (BR-1)</td>
+                  <td class="amount">₹2,21,895</td>
+                </tr>
+                <tr>
+                  <td>Kids Bedroom (BR-2)</td>
+                  <td class="amount">₹168,404</td>
+                </tr>
+                <tr>
+                  <td>Wash Basin & Vanity</td>
+                  <td class="amount">On Actuals</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div>
+            <table class="summary-table">
+              <thead>
+                <tr>
+                  <th>Billing Line</th>
+                  <th style="text-align:right">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Subtotal (All Woodwork)</td>
+                  <td class="amount">₹7,38,361</td>
+                </tr>
+                <tr>
+                  <td>Design Discount (10%)</td>
+                  <td class="amount" style="color: var(--accent-moss)">-₹73,836</td>
+                </tr>
+                <tr>
+                  <td>Price After Discount</td>
+                  <td class="amount">₹6,64,525</td>
+                </tr>
+                <tr>
+                  <td>GST Tax (18%)</td>
+                  <td class="amount">₹1,19,614</td>
+                </tr>
+                <tr style="border-top: 1px dashed var(--border-highlight)">
+                  <td style="color: var(--accent-moss)">Shoot Cashback Reward (2%)</td>
+                  <td class="amount" style="color: var(--accent-moss)">₹15,683</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div class="grand-total-container">
+          <div class="grand-label">Grand Total Payable (Incl. GST)</div>
+          <div class="grand-value">₹7,84,139</div>
+        </div>
+      </div>
+      
+      <div class="terms-card">
+        <h3 class="terms-title">Project Key Terms</h3>
+        <ol class="terms-list">
+          <li><strong>Warranty:</strong> 7-year woodwork replacement warranty & 10-year maintenance warranty (excluding glass).</li>
+          <li><strong>Exclusions:</strong> Electrical appliances & light-point creation are excluded. Plumbing and electrical labor are charged on actuals.</li>
+          <li><strong>Material Caps:</strong> Color laminates are capped at ₹1,500/sheet. Decorative handles are capped at ₹200/handle.</li>
+          <li><strong>Payments:</strong> All vendor related payments must be made in full before material/service delivery.</li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox-modal" onclick="closeZoom()">
+    <button class="lightbox-close" onclick="closeZoom()">&times;</button>
+    <div class="lightbox-content">
+      <img class="lightbox-img" id="zoom-img" src="" alt="Zoomed view">
+      <div class="lightbox-caption" id="zoom-caption">Image View</div>
+    </div>
+  </div>
+
+  <script>
+    // Sidebar navigation logic
+    function showRoom(roomId, element) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.room-section');
+      sections.forEach(sec => sec.classList.remove('active'));
+      
+      // Show target section
+      const targetSec = document.getElementById('sec-' + roomId);
+      if (targetSec) {
+        targetSec.classList.add('active');
+      }
+      
+      // Update sidebar nav items highlight
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => item.classList.remove('active'));
+      if (element) {
+        element.classList.add('active');
+      }
+      
+      // On mobile, close sidebar automatically on item selection
+      const sidebar = document.getElementById('app-sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      if (sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+        if (overlay) overlay.classList.remove('active');
+        document.getElementById('menu-toggle-btn').innerText = '☰';
+      }
+      
+      // Scroll to top of content
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Toggle Mobile Sidebar Drawer
+    function toggleSidebar() {
+      const sidebar = document.getElementById('app-sidebar');
+      const btn = document.getElementById('menu-toggle-btn');
+      const overlay = document.getElementById('sidebar-overlay');
+      
+      if (sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+        if (overlay) overlay.classList.remove('active');
+        btn.innerText = '☰';
+      } else {
+        sidebar.classList.add('open');
+        if (overlay) overlay.classList.add('active');
+        btn.innerText = '✕';
+      }
+    }
+    
+    // Switch between Slider Mode and Individual Image Modes
+    function setVisualMode(roomId, mode) {
+      const parentSection = document.getElementById('sec-' + roomId);
+      if (!parentSection) return;
+      
+      const sliderContainer = document.getElementById(roomId + '-slider-container');
+      const imgContainer = document.getElementById(roomId + '-img-container');
+      const caption = document.getElementById(roomId + '-caption');
+      
+      // Update Tab Button Highlights
+      const tabBtns = parentSection.querySelectorAll('.view-tabs button');
+      tabBtns.forEach(btn => btn.classList.remove('active'));
+      
+      // Update thumbnails border
+      const thumbs = parentSection.querySelectorAll('.reference-gallery .ref-thumbnail');
+      thumbs.forEach(thumb => thumb.classList.remove('active'));
+      
+      if (mode === 'slider') {
+        sliderContainer.style.display = 'block';
+        imgContainer.style.display = 'none';
+        
+        document.getElementById('btn-' + roomId + '-slider').classList.add('active');
+        thumbs[0].classList.add('active');
+        caption.innerText = "Interactive Before/After Slider — Compare concept and 3D render";
+      } else {
+        sliderContainer.style.display = 'none';
+        imgContainer.style.display = 'block';
+        
+        // Hide all images inside container and show target one
+        const images = imgContainer.querySelectorAll('img');
+        images.forEach(img => img.classList.remove('active'));
+        
+        const targetImg = document.getElementById(roomId + '-img-' + mode);
+        if (targetImg) {
+          targetImg.classList.add('active');
+        }
+        
+        // Highlight active button and thumbnail
+        document.getElementById('btn-' + roomId + '-' + mode).classList.add('active');
+        
+        if (mode === 'render') {
+          thumbs[1].classList.add('active');
+          caption.innerText = "Interior Render — Generated 3D visual showcase";
+        } else if (mode === 'ref1') {
+          thumbs[2].classList.add('active');
+          caption.innerText = "Reference Design Photo — Carpentry model layout";
+        } else if (mode === 'ref2') {
+          thumbs[3].classList.add('active');
+          caption.innerText = "Reference Design Photo — Secondary concept reference";
+        } else if (mode === 'ref3') {
+          thumbs[4].classList.add('active');
+          caption.innerText = "Reference Design Photo — Additional design detail";
+        }
+      }
+    }
+    
+    // Before/After Drag Slider Logic
+    function handleSlider(input, roomId) {
+      const parentSection = document.getElementById('sec-' + roomId);
+      if (!parentSection) return;
+      
+      const val = input.value;
+      const afterImage = document.getElementById(roomId + '-slider-after');
+      const bar = document.getElementById(roomId + '-slider-bar');
+      const handle = document.getElementById(roomId + '-slider-handle');
+      
+      if (afterImage && bar && handle) {
+        afterImage.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+        bar.style.left = `${val}%`;
+        handle.style.left = `${val}%`;
+      }
+    }
+    
+    // Zoom Image Modal Zoom-in/Zoom-out
+    function zoomImage(container) {
+      const activeImg = container.querySelector('img.active') || container.querySelector('.slider-image.after');
+      if (!activeImg) return;
+      
+      const modal = document.getElementById('lightbox-modal');
+      const zoomImg = document.getElementById('zoom-img');
+      const zoomCaption = document.getElementById('zoom-caption');
+      
+      zoomImg.src = activeImg.src;
+      zoomCaption.innerText = activeImg.alt;
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeZoom() {
+      const modal = document.getElementById('lightbox-modal');
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Theme switching logic (Dark / Light)
+    function toggleTheme() {
+      const body = document.body;
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      body.setAttribute('data-theme', newTheme);
+      
+      const icon = document.getElementById('theme-icon');
+      const text = document.getElementById('theme-text');
+      
+      if (newTheme === 'dark') {
+        icon.innerText = '☀';
+        text.innerText = 'LIGHT';
+      } else {
+        icon.innerText = '🌙';
+        text.innerText = 'DARK';
+      }
+    }
+    
+    // Close Zoom on Escape key press
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeZoom();
+      }
+    });
+    
+    // Initialize slider positions on load
+    window.addEventListener('DOMContentLoaded', () => {
+      // Trigger initial slider adjustment for foyer on load
+      const rangeInput = document.querySelector('.slider-range-input');
+      if (rangeInput) {
+        handleSlider(rangeInput, 'foyer');
+      }
+    });
+  </script>
+</body>
+</html>

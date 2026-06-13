@@ -1,0 +1,7 @@
+.agents/
+skills-lock.json
+*.log
+.tempmediaStorage/
+node_modules/
+.DS_Store
+Thumbs.db

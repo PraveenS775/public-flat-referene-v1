@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="800" viewBox="0 0 1100 800" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="1100" height="800" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="550" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#2d2d2d">Anuhar Towers - Block B, Flat No. 902 (2BHK)</text>
+  <text x="550" y="54" text-anchor="middle" font-size="13" fill="#777">Furniture &amp; Carpentry Layout Plan — based on Reminiscent Interior Design Estimate (Project REM-20260417-5575)</text>
+
+  <!-- North arrow -->
+  <g transform="translate(1020,40)">
+    <circle cx="0" cy="0" r="18" fill="none" stroke="#333" stroke-width="1.5"/>
+    <line x1="0" y1="10" x2="0" y2="-12" stroke="#333" stroke-width="1.5"/>
+    <polygon points="0,-16 -5,-6 5,-6" fill="#333"/>
+    <text x="0" y="32" text-anchor="middle" font-size="12" font-weight="bold">N</text>
+  </g>
+
+  <!-- ===================== FLOOR PLAN ===================== -->
+  <g transform="translate(60,90)">
+
+    <!-- Outer building outline -->
+    <rect x="0" y="0" width="520" height="430" fill="none" stroke="#333" stroke-width="4"/>
+
+    <!-- ============ BEDROOM 1 = MASTER BEDROOM (BR-1) ============ -->
+    <rect x="0" y="0" width="260" height="160" fill="#fdf6e3" stroke="#888" stroke-width="2"/>
+    <text x="130" y="22" text-anchor="middle" font-size="15" font-weight="bold">Master Bedroom (BR-1)</text>
+    <text x="130" y="38" text-anchor="middle" font-size="11" fill="#555">15'9" x 12'</text>
+
+    <!-- Wardrobe along left wall -->
+    <rect x="4" y="44" width="35" height="112" fill="#d9c2a0" stroke="#9c7b4f" stroke-width="1.5"/>
+    <text x="21" y="100" text-anchor="middle" font-size="9" font-weight="bold" transform="rotate(-90 21 100)">WARDROBE 56 + LOFT 16 sft</text>
+
+    <!-- Dressing Unit + Mirror along top wall -->
+    <rect x="45" y="44" width="90" height="28" fill="#e8d8c3" stroke="#9c7b4f" stroke-width="1.5"/>
+    <text x="90" y="55" text-anchor="middle" font-size="8" font-weight="bold">DRESSING UNIT + MIRROR</text>
+    <text x="90" y="66" text-anchor="middle" font-size="8" font-weight="bold">(6 sft + 8 sft)</text>
+
+    <!-- Tall unit (dressing) -->
+    <rect x="140" y="44" width="30" height="60" fill="#d9c2a0" stroke="#9c7b4f" stroke-width="1.5"/>
+    <text x="155" y="74" text-anchor="middle" font-size="8" font-weight="bold" transform="rotate(-90 155 74)">TALL UNIT 6sft</text>
+
+    <!-- Bed placeholder -->
+    <rect x="170" y="80" width="85" height="75" fill="#f3e9da" stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="212" y="120" text-anchor="middle" font-size="10" fill="#888">Bed area</text>
+
+    <!-- ============ LIVING ROOM ============ -->
+    <rect x="260" y="0" width="260" height="160" fill="#e8f0fe" stroke="#888" stroke-width="2"/>
+    <text x="390" y="22" text-anchor="middle" font-size="15" font-weight="bold">Living Room</text>
+    <text x="390" y="38" text-anchor="middle" font-size="11" fill="#555">15' x 12'</text>
+
+    <!-- TV Base Unit + back panel/wallpaper wall (right wall) -->
+    <rect x="486" y="44" width="30" height="112" fill="#cdd9f0" stroke="#5b7bbf" stroke-width="1.5"/>
+    <text x="501" y="100" text-anchor="middle" font-size="9" font-weight="bold" transform="rotate(-90 501 100)">TV UNIT 8 + STORAGE 7sft + WALLPAPER</text>
+
+    <!-- Foyer / shoe rack near entry, in living wall adjoining entry -->
+    <rect x="264" y="44" width="80" height="26" fill="#f0e6d2" stroke="#b89b6a" stroke-width="1.5"/>
+    <text x="304" y="55" text-anchor="middle" font-size="8" font-weight="bold">FOYER: SHOE RACK 7.5</text>
+    <text x="304" y="66" text-anchor="middle" font-size="8" font-weight="bold">+ SEATER 2.25 sft</text>
+
+    <!-- Sofa placeholder -->
+    <rect x="350" y="90" width="120" height="50" fill="#f3f7ff" stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="410" y="118" text-anchor="middle" font-size="10" fill="#888">Sofa seating area</text>
+
+    <!-- ============ TOILET 1 ============ -->
+    <rect x="0" y="160" width="150" height="90" fill="#e6f4ea" stroke="#888" stroke-width="2"/>
+    <text x="75" y="195" text-anchor="middle" font-size="13" font-weight="bold">Toilet 1</text>
+    <text x="75" y="212" text-anchor="middle" font-size="11" fill="#555">8'10" x 4'9"</text>
+
+    <!-- ============ DINING ============ -->
+    <rect x="150" y="160" width="160" height="180" fill="#fff7e6" stroke="#888" stroke-width="2"/>
+    <text x="230" y="182" text-anchor="middle" font-size="15" font-weight="bold">Dining</text>
+    <text x="230" y="198" text-anchor="middle" font-size="11" fill="#555">10' x 13'5"</text>
+
+    <!-- Crockery Base Unit -->
+    <rect x="154" y="206" width="80" height="26" fill="#f5e0c8" stroke="#c08a4f" stroke-width="1.5"/>
+    <text x="194" y="223" text-anchor="middle" font-size="9" font-weight="bold">CROCKERY BASE UNIT 12sft</text>
+
+    <!-- Dining Panelling wall -->
+    <rect x="154" y="236" width="6" height="100" fill="#e9d8bd" stroke="#c08a4f" stroke-width="1.5"/>
+    <text x="157" y="290" text-anchor="middle" font-size="8" font-weight="bold" transform="rotate(-90 157 290)">DINING PANELLING 16sft</text>
+
+    <!-- Dining table placeholder -->
+    <rect x="190" y="245" width="100" height="80" fill="#fffaf0" stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="240" y="288" text-anchor="middle" font-size="10" fill="#888">Dining table</text>
+
+    <!-- ============ PUJA ============ -->
+    <rect x="310" y="160" width="30" height="70" fill="#f3e6f7" stroke="#888" stroke-width="2"/>
+    <rect x="312" y="164" width="26" height="40" fill="#e3c9ee" stroke="#9b5cb5" stroke-width="1.5"/>
+    <text x="325" y="186" text-anchor="middle" font-size="8" font-weight="bold" transform="rotate(-90 325 186)">POOJA UNIT 6sft + CNC DOOR 21sft</text>
+    <text x="325" y="222" text-anchor="middle" font-size="8" font-weight="bold" transform="rotate(-90 325 222)">TEXTURE PAINT</text>
+
+    <!-- ============ TOILET 2 ============ -->
+    <rect x="340" y="160" width="180" height="70" fill="#e6f4ea" stroke="#888" stroke-width="2"/>
+    <text x="430" y="188" text-anchor="middle" font-size="13" font-weight="bold">Toilet 2</text>
+    <text x="430" y="205" text-anchor="middle" font-size="11" fill="#555">8' x 4'3"</text>
+
+    <!-- ============ BEDROOM 2 = KIDS ROOM (BR-2) ============ -->
+    <rect x="310" y="230" width="210" height="110" fill="#fdf6e3" stroke="#888" stroke-width="2"/>
+    <text x="415" y="246" text-anchor="middle" font-size="14" font-weight="bold">Kids Room (BR-2)</text>
+    <text x="415" y="261" text-anchor="middle" font-size="10" fill="#555">10' x 11'</text>
+
+    <!-- Wardrobe along right wall -->
+    <rect x="486" y="290" width="30" height="46" fill="#d9c2a0" stroke="#9c7b4f" stroke-width="1.5"/>
+    <text x="501" y="313" text-anchor="middle" font-size="8" font-weight="bold" transform="rotate(-90 501 313)">WARDROBE 42 + LOFT 12sft</text>
+
+    <!-- Study unit along left wall of this room -->
+    <rect x="314" y="266" width="80" height="20" fill="#cfe3d4" stroke="#5e9c6e" stroke-width="1.5"/>
+    <text x="354" y="280" text-anchor="middle" font-size="8" font-weight="bold">STUDY UNIT (base 4.5 + top 6sft)</text>
+
+    <!-- Bed placeholder -->
+    <rect x="314" y="290" width="170" height="46" fill="#f3e9da" stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="399" y="316" text-anchor="middle" font-size="10" fill="#888">Bed area (Queen)</text>
+
+    <!-- ============ TOILET 1 lower extension ============ -->
+    <rect x="0" y="250" width="150" height="90" fill="#e6f4ea" stroke="#888" stroke-width="2"/>
+
+    <!-- ============ KITCHEN ============ -->
+    <rect x="40" y="340" width="230" height="90" fill="#fde8e8" stroke="#888" stroke-width="2"/>
+    <text x="155" y="358" text-anchor="middle" font-size="14" font-weight="bold">Kitchen</text>
+    <text x="155" y="373" text-anchor="middle" font-size="10" fill="#555">7'2" x 10'6"</text>
+    <rect x="44" y="382" width="222" height="20" fill="#f7cccc" stroke="#c46b6b" stroke-width="1.5"/>
+    <text x="155" y="395" text-anchor="middle" font-size="9" font-weight="bold">BASE 45.76 · TOP 23.2 · LOFT 35.2 sft</text>
+    <text x="155" y="416" text-anchor="middle" font-size="8" fill="#a64545">+ Tandem Box, Wire Basket, Cutlery Tray, Bottle Pull-Out, Gola Handles</text>
+
+    <!-- ============ UTILITY ============ -->
+    <rect x="0" y="340" width="40" height="90" fill="#ececec" stroke="#888" stroke-width="2"/>
+    <text x="20" y="390" text-anchor="middle" font-size="9" font-weight="bold" transform="rotate(-90 20 390)">UTILITY 3'11"x11'3"</text>
+
+    <!-- ============ BALCONY ============ -->
+    <rect x="270" y="340" width="160" height="90" fill="#e0ddd3" stroke="#888" stroke-width="2"/>
+    <text x="350" y="385" text-anchor="middle" font-size="16" font-weight="bold">Balcony</text>
+    <text x="350" y="405" text-anchor="middle" font-size="14" fill="#555">10' x 6'9"</text>
+
+    <!-- ============ BED area BR2 extension ============ -->
+    <rect x="430" y="340" width="90" height="90" fill="#fdf6e3" stroke="#888" stroke-width="2"/>
+    <text x="475" y="390" text-anchor="middle" font-size="9" fill="#888">Kids bed /</text>
+    <text x="475" y="404" text-anchor="middle" font-size="9" fill="#888">storage area</text>
+
+    <!-- Entrance door marker -->
+    <rect x="240" y="-6" width="40" height="12" fill="#a33" />
+    <text x="260" y="-12" text-anchor="middle" font-size="11" fill="#a33" font-weight="bold">ENTRY</text>
+
+  </g>
+
+  <!-- ===================== LEGEND ===================== -->
+  <g transform="translate(620,90)">
+    <rect x="0" y="0" width="420" height="460" fill="#f7f7f7" stroke="#ccc"/>
+    <text x="210" y="26" text-anchor="middle" font-size="16" font-weight="bold">Carpentry &amp; Cost Reference</text>
+    <text x="210" y="44" text-anchor="middle" font-size="10" fill="#777">All amounts from Reminiscent estimate (Standard finish, before discount)</text>
+
+    <g font-size="11">
+      <text x="14" y="70" font-weight="bold" fill="#b89b6a">■ Foyer — ₹18,516</text>
+      <text x="30" y="86">Shoe Rack (7.5 sft) + Seater (2.25 sft)</text>
+
+      <text x="14" y="110" font-weight="bold" fill="#5b7bbf">■ Living — ₹35,746</text>
+      <text x="30" y="126">TV Base Unit (8 sft), Side Open Storage (7 sft),</text>
+      <text x="30" y="140">Wallpaper TV back panel</text>
+
+      <text x="14" y="164" font-weight="bold" fill="#c08a4f">■ Dining — ₹37,268</text>
+      <text x="30" y="180">Crockery Base Unit (12 sft) + Panelling (16 sft)</text>
+
+      <text x="14" y="204" font-weight="bold" fill="#9b5cb5">■ Pooja — ₹32,715</text>
+      <text x="30" y="220">Pooja Base Unit (6 sft) + CNC Door Panel (21 sft)</text>
+      <text x="30" y="234">+ Texture Paint (12 sft)</text>
+
+      <text x="14" y="258" font-weight="bold" fill="#c46b6b">■ Kitchen — ₹223,817</text>
+      <text x="30" y="274">Base Unit (45.76), Top Unit (23.2), Loft (35.2),</text>
+      <text x="30" y="288">+ Tandem Box, Wire Basket, Cutlery Tray,</text>
+      <text x="30" y="302">Bottle Pull-Out, Gola Profile Handles</text>
+
+      <text x="14" y="326" font-weight="bold" fill="#9c7b4f">■ Master Bedroom (BR-1) — ₹221,895</text>
+      <text x="30" y="342">Wardrobe (56 sft) + Loft (16 sft), Dressing Unit</text>
+      <text x="30" y="356">(6 sft) + Mirror (8 sft), Tall Unit/Dressing (6 sft),</text>
+      <text x="30" y="370">Study Panelling (4.5 sft), King Size Bed w/</text>
+      <text x="30" y="384">hydraulic storage &amp; cushioned headboard</text>
+
+      <text x="14" y="404" font-weight="bold" fill="#5e9c6e">■ Kids Room (BR-2) — ₹168,404</text>
+      <text x="30" y="420">Wardrobe (42 sft) + Loft (12 sft), Study Base (4.5</text>
+      <text x="30" y="434">sft) + Top (6 sft), Queen Bed w/ hydraulic storage</text>
+      <text x="30" y="448">+ Extra Mirror (10 sft, no panelling)</text>
+    </g>
+  </g>
+
+  <!-- ===================== TOTALS ===================== -->
+  <g transform="translate(620,570)">
+    <rect x="0" y="0" width="420" height="170" fill="#fffaf0" stroke="#e0c896"/>
+    <text x="210" y="28" text-anchor="middle" font-size="15" font-weight="bold">Estimate Summary</text>
+    <g font-size="13">
+      <text x="20" y="58" font-weight="bold">Subtotal (all rooms)</text>
+      <text x="400" y="58" text-anchor="end">₹7,38,361</text>
+
+      <text x="20" y="84" font-weight="bold" fill="#2a8a4a">Discount (10%)</text>
+      <text x="400" y="84" text-anchor="end" fill="#2a8a4a">-₹73,836</text>
+
+      <text x="20" y="110" font-weight="bold">After Discount</text>
+      <text x="400" y="110" text-anchor="end">₹6,64,525</text>
+
+      <text x="20" y="136" font-weight="bold">GST (18%)</text>
+      <text x="400" y="136" text-anchor="end">₹1,19,614</text>
+
+      <line x1="20" y1="150" x2="400" y2="150" stroke="#bbb"/>
+
+      <text x="20" y="178" font-weight="bold" font-size="16">Total with GST</text>
+      <text x="400" y="178" text-anchor="end" font-size="16" font-weight="bold">₹7,84,139</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <text x="550" y="780" text-anchor="middle" font-size="11" fill="#999">Layout positions are indicative — verify exact wall &amp; furniture placement on-site with engineer/carpenter before fabrication. Source: Anuhar Towers Block B Floor Plan + Reminiscent Interior Design Estimate (REM-20260417-5575)</text>
+</svg>
