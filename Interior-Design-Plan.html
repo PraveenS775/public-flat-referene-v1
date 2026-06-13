@@ -1,0 +1,1014 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anuhar Towers · Block B · Flat 902 — Interior Working Plan</title>
+
+<style>
+  /* ============ FONTS ============ */
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Mono:wght@400;700&display=swap');
+
+  :root{
+    --paper:        #f6f1e7;
+    --paper-deep:   #efe7d8;
+    --ink:          #2b2520;
+    --ink-soft:     #6b5f53;
+    --clay:         #c1582f;
+    --clay-deep:    #9c4220;
+    --moss:         #6f7a52;
+    --line:         #d8cdb9;
+    --card:         #fffdf8;
+    --shadow:       0 18px 40px -22px rgba(43,37,32,.45);
+    --serif: 'Fraunces', serif;
+    --mono: 'Space Mono', monospace;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family: var(--mono);
+    background: var(--paper);
+    color: var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(43,37,32,.045) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  /* ============ HEADER ============ */
+  header.cover{
+    position:relative;
+    padding: 5rem 6vw 4rem;
+    border-bottom: 3px solid var(--ink);
+    overflow:hidden;
+    background: linear-gradient(180deg, var(--paper-deep) 0%, var(--paper) 100%);
+  }
+
+  header.cover::before{
+    content:"";
+    position:absolute;
+    top:-120px; right:-120px;
+    width:380px; height:380px;
+    border:2px dashed var(--clay);
+    border-radius:50%;
+    opacity:.35;
+  }
+  header.cover::after{
+    content:"";
+    position:absolute;
+    bottom:-160px; left:-100px;
+    width:320px; height:320px;
+    border:2px solid var(--moss);
+    border-radius:50%;
+    opacity:.2;
+  }
+
+  .eyebrow{
+    font-family: var(--mono);
+    font-size:.78rem;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color: var(--clay-deep);
+    font-weight:700;
+    margin-bottom:1.4rem;
+    display:flex;
+    align-items:center;
+    gap:.8rem;
+  }
+  .eyebrow::before{
+    content:"";
+    display:inline-block;
+    width:40px; height:2px;
+    background: var(--clay-deep);
+  }
+
+  h1.title{
+    font-family: var(--serif);
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size: clamp(2.6rem, 7vw, 5.4rem);
+    line-height:1.02;
+    letter-spacing:-.01em;
+    max-width:18ch;
+    position:relative;
+    z-index:2;
+  }
+  h1.title em{
+    font-style:italic;
+    font-weight:300;
+    color: var(--clay);
+  }
+
+  .cover-meta{
+    margin-top:2.6rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:2.4rem 3.2rem;
+    max-width:760px;
+  }
+  .cover-meta div{
+    font-size:.82rem;
+  }
+  .cover-meta span{
+    display:block;
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    font-size:.66rem;
+    color: var(--ink-soft);
+    margin-bottom:.35rem;
+  }
+  .cover-meta strong{
+    font-family: var(--serif);
+    font-size:1.15rem;
+    font-weight:600;
+  }
+
+  .cover-note{
+    margin-top:2.8rem;
+    max-width:620px;
+    font-size:.95rem;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--clay);
+    padding-left:1.2rem;
+  }
+
+  /* ============ TOC / NAV ============ */
+  nav.toc{
+    background: var(--ink);
+    color: var(--paper);
+    position: sticky;
+    top:0;
+    z-index:50;
+    border-bottom: 3px solid var(--clay);
+  }
+
+  /* Collapsible toggle bar - always visible, compact */
+  .toc-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+    padding: .9rem 6vw;
+    cursor:pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select:none;
+  }
+  .toc-toggle h2{
+    font-family: var(--serif);
+    font-size:1rem;
+    font-weight:600;
+    letter-spacing:.04em;
+    color: var(--paper);
+    margin:0;
+  }
+  .toc-toggle h2 .num{ color: var(--clay); margin-right:.4rem; }
+
+  .toc-toggle .chevron{
+    flex:none;
+    width:30px; height:30px;
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.9rem;
+    transition: transform .3s ease, background .3s ease;
+  }
+
+  /* The TOC body: collapsed by default, expands on demand */
+  .toc-body{
+    max-height: 0;
+    overflow:hidden;
+    transition: max-height .35s ease;
+    padding: 0 6vw;
+  }
+  #toc-check{ display:none; }
+  #toc-check:checked ~ .toc-body{
+    max-height: 420px;
+    overflow-y:auto;
+    padding-bottom: 1.4rem;
+  }
+  #toc-check:checked ~ .toc-toggle .chevron{
+    transform: rotate(180deg);
+    background: var(--clay);
+  }
+
+  .toc-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.55rem .7rem;
+    padding-top:.3rem;
+  }
+  .toc-grid a{
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+    font-size:.74rem;
+    text-decoration:none;
+    color: var(--paper);
+    background: rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.16);
+    padding:.5rem .85rem;
+    border-radius: 999px;
+    letter-spacing:.03em;
+    transition: all .25s ease;
+    white-space:nowrap;
+  }
+  .toc-grid a:hover{
+    background: var(--clay);
+    border-color: var(--clay);
+    color: var(--ink);
+    transform: translateY(-2px);
+  }
+  .toc-grid a .step-no{
+    font-family: var(--serif);
+    font-weight:700;
+    font-size:.9rem;
+    color: var(--clay);
+  }
+  .toc-grid a:hover .step-no{ color: var(--ink); }
+
+  @media (max-width: 640px){
+    .toc-toggle{ padding: .8rem 5vw; }
+    .toc-body{ padding: 0 5vw; }
+    .toc-grid a{ font-size:.72rem; padding:.5rem .75rem; }
+  }
+
+  /* ============ MAIN FLOW ============ */
+  main{
+    padding: 0 6vw 8rem;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .flow-line{
+    position:absolute;
+    left: 38px;
+    top:0; bottom:0;
+    width:2px;
+    background: repeating-linear-gradient(to bottom, var(--line) 0 10px, transparent 10px 20px);
+    z-index:0;
+  }
+
+  .room{
+    position:relative;
+    padding: 5.5rem 0 0;
+    scroll-margin-top: 140px;
+  }
+  .room:first-of-type{ padding-top: 4.5rem; }
+
+  .room-head{
+    display:flex;
+    align-items:flex-start;
+    gap:1.8rem;
+    margin-bottom:2.4rem;
+    position:relative;
+  }
+
+  .step-badge{
+    flex:none;
+    width:78px; height:78px;
+    border-radius:50%;
+    background: var(--card);
+    border:2px solid var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: var(--serif);
+    font-size:2.1rem;
+    font-weight:600;
+    color: var(--clay-deep);
+    box-shadow: var(--shadow);
+    position:relative;
+    z-index:2;
+  }
+  .step-badge::after{
+    content:"";
+    position:absolute;
+    inset:-8px;
+    border:1px dashed var(--moss);
+    border-radius:50%;
+    opacity:.5;
+  }
+
+  .room-head h2{
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    font-weight:600;
+    line-height:1.1;
+    margin-top:.4rem;
+  }
+  .room-head h2 .tag{
+    display:inline-block;
+    font-family: var(--mono);
+    font-size:.62rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color: var(--moss);
+    background: rgba(111,122,82,.12);
+    border:1px solid rgba(111,122,82,.3);
+    border-radius:999px;
+    padding:.3rem .8rem;
+    margin-top:.6rem;
+    vertical-align:middle;
+  }
+
+  /* card layout: image(s) + note */
+  .room-body{
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2.2rem;
+    margin-left: 0;
+    padding-left: 98px;
+  }
+  @media (max-width: 880px){
+    .room-body{ grid-template-columns: 1fr; padding-left: 0; }
+    .flow-line{ display:none; }
+  }
+
+  .gallery{
+    display:grid;
+    gap: 1rem;
+  }
+  .gallery.single{ grid-template-columns: 1fr; }
+  .gallery.double{ grid-template-columns: 1fr 1fr; }
+  .gallery.triple{ grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 620px){
+    .gallery.double, .gallery.triple{ grid-template-columns: 1fr; }
+  }
+
+  figure{
+    margin:0;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow:hidden;
+    box-shadow: var(--shadow);
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+  figure:hover{
+    transform: translateY(-4px) rotate(-0.2deg);
+    box-shadow: 0 26px 50px -24px rgba(43,37,32,.55);
+  }
+  figure .img-frame{
+    display:block;
+    width:100%;
+    min-height: 220px;
+    max-height: 520px;
+    background: var(--paper-deep);
+    cursor: zoom-in;
+    padding: .6rem;
+  }
+  figure img{
+    display:block;
+    width:100%;
+    height: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    background: var(--paper-deep);
+  }
+  @media (max-width: 640px){
+    figure .img-frame{ max-height: 70vh; padding:.4rem; }
+    figure img{ max-height: 70vh; }
+  }
+
+  figcaption{
+    font-size:.7rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color: var(--ink-soft);
+    padding: .7rem 1rem;
+    border-top:1px solid var(--line);
+    font-family: var(--mono);
+  }
+
+  .note{
+    background: var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding: 1.6rem 1.7rem;
+    box-shadow: var(--shadow);
+    align-self:start;
+    position:relative;
+  }
+  .note::before{
+    content: "BRIEF";
+    position:absolute;
+    top:-11px; left:1.4rem;
+    background: var(--clay);
+    color: var(--paper);
+    font-size:.62rem;
+    letter-spacing:.28em;
+    font-weight:700;
+    padding:.3rem .7rem;
+    border-radius:999px;
+  }
+  .note h3{
+    font-family: var(--serif);
+    font-size:1.05rem;
+    font-weight:600;
+    margin: .5rem 0 .8rem;
+    color: var(--clay-deep);
+  }
+  .note p{
+    font-size:.88rem;
+    color: var(--ink);
+    margin-bottom: .9rem;
+  }
+  .note ul{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:.55rem;
+  }
+  .note ul li{
+    font-size:.82rem;
+    padding-left:1.4rem;
+    position:relative;
+    color: var(--ink);
+  }
+  .note ul li::before{
+    content:"→";
+    position:absolute;
+    left:0;
+    color: var(--moss);
+    font-weight:700;
+  }
+
+  /* ============ FOOTER ============ */
+  footer{
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3.5rem 6vw;
+    text-align:center;
+  }
+  footer .stamp{
+    display:inline-flex;
+    align-items:center;
+    gap:1rem;
+    border:2px solid var(--clay);
+    border-radius:999px;
+    padding:.7rem 1.6rem;
+    font-family:var(--serif);
+    font-size:1rem;
+    font-weight:600;
+    margin-bottom:1.2rem;
+  }
+  footer .stamp::before, footer .stamp::after{
+    content:"✦";
+    color: var(--clay);
+  }
+  footer p{
+    font-size:.78rem;
+    color: rgba(246,241,231,.6);
+    max-width:560px;
+    margin: .4rem auto 0;
+    line-height:1.7;
+  }
+
+  /* scroll progress accent on h2 */
+  .room-head h2 strong{ color: var(--clay-deep); }
+
+  /* ============ LIGHTBOX ============ */
+  .lightbox{
+    position:fixed;
+    inset:0;
+    background: rgba(43,37,32,.92);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+    padding: 2rem;
+    cursor: zoom-out;
+  }
+  .lightbox.active{ display:flex; }
+  .lightbox img{
+    max-width:100%;
+    max-height:100%;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    border-radius:8px;
+    box-shadow: 0 30px 70px -20px rgba(0,0,0,.6);
+  }
+  .lightbox .lightbox-close{
+    position:absolute;
+    top:1.2rem; right:1.6rem;
+    width:44px; height:44px;
+    border-radius:50%;
+    border:2px solid var(--paper);
+    background: rgba(255,255,255,.08);
+    color: var(--paper);
+    font-size:1.4rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    line-height:1;
+  }
+  .lightbox .lightbox-caption{
+    position:absolute;
+    bottom:1.6rem; left:50%;
+    transform:translateX(-50%);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size:.78rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    background: rgba(0,0,0,.35);
+    padding:.5rem 1.2rem;
+    border-radius:999px;
+    max-width:90vw;
+    text-align:center;
+  }
+  @media (max-width: 640px){
+    .lightbox{ padding:.8rem; }
+    .lightbox .lightbox-close{ top:.6rem; right:.6rem; width:40px; height:40px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="eyebrow">Site Reference Booklet · Working Document</div>
+  <h1 class="title">Anuhar Towers — Block&nbsp;B, Flat&nbsp;902 <em>Interior Fit-Out Plan</em></h1>
+
+  <div class="cover-meta">
+    <div>
+      <span>Unit Type</span>
+      <strong>2 BHK · 1316 sq.ft Salable</strong>
+    </div>
+    <div>
+      <span>Flat No.</span>
+      <strong>902, Block B</strong>
+    </div>
+    <div>
+      <span>Prepared For</span>
+      <strong>Site Engineer &amp; Carpenter</strong>
+    </div>
+    <div>
+      <span>Document Purpose</span>
+      <strong>Room-wise Design Reference</strong>
+    </div>
+  </div>
+
+  <p class="cover-note">
+    This booklet walks through the flat room by room, in the order you'd naturally move through the house.
+    Each section pairs the homeowner's selected reference image(s) with a short, practical brief —
+    materials, finish, and placement — so the look and intent are clear before work begins.
+    Treat images as <strong>style &amp; layout references</strong>, not exact-to-scale drawings.
+  </p>
+</header>
+
+<nav class="toc">
+  <input type="checkbox" id="toc-check">
+  <label class="toc-toggle" for="toc-check">
+    <h2><span class="num">§</span>Walkthrough Index — 13 Stops</h2>
+    <span class="chevron">▾</span>
+  </label>
+  <div class="toc-body">
+    <div class="toc-grid">
+      <a href="#floorplan"><span class="step-no">00</span> Floor Plan — Flat 902</a>
+      <a href="#ceiling"><span class="step-no">01</span> Fall Ceiling — Living &amp; Common Areas</a>
+      <a href="#tv-unit"><span class="step-no">02</span> Living Hall — TV Unit Wall</a>
+      <a href="#sofa-wall"><span class="step-no">03</span> Living Hall — Sofa Back Wall</a>
+      <a href="#dining-ceiling"><span class="step-no">04</span> Dining — Ceiling Art</a>
+      <a href="#kitchen"><span class="step-no">05</span> Kitchen — Cabinets &amp; Layout</a>
+      <a href="#pooja"><span class="step-no">06</span> Pooja Unit</a>
+      <a href="#crockery"><span class="step-no">07</span> Crockery Unit — Near Pooja</a>
+      <a href="#master-wardrobe"><span class="step-no">08</span> Master Bedroom — Wardrobe</a>
+      <a href="#dressing-table"><span class="step-no">09</span> Master Bedroom — Dressing Table</a>
+      <a href="#kids-wardrobe"><span class="step-no">10</span> Kids Room — Wardrobe</a>
+      <a href="#kids-study"><span class="step-no">11</span> Kids Room — Study Unit</a>
+      <a href="#wash-basin"><span class="step-no">12</span> Common Wash Area — Basin &amp; Storage</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="flow-line"></div>
+
+  <!-- 00 — FLOOR PLAN -->
+  <section class="room" id="floorplan">
+    <div class="room-head">
+      <div class="step-badge">00</div>
+      <h2>Floor Plan <br><span class="tag">Flat 902 · Block B · 2BHK</span></h2>
+    </div>
+    <div class="room-body">
+      <div class="gallery single">
+        <figure>
+          <div class="img-frame" style="background:#fff;" onclick="openLightbox('flat902_floorplan.png','Flat 902 — room-wise layout &amp; area statement')">
+            <img src="flat902_floorplan.png" alt="Floor plan for Flat 902, Block B, 2BHK with room dimensions" style="background:#fff;">
+          </div>
+          <figcaption>Flat 902 — room-wise layout &amp; area statement</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h3>How to read this</h3>
+        <p>This is the layout of Flat 902 — use it to understand where each room sits relative to the others
+        before reading the design briefs below.</p>
+        <ul>
+          <li>Salable Area: 1316 sq.ft · Carpet Area: 838 sq.ft · SBUP: 1012 sq.ft</li>
+          <li>2 Bedrooms, Living, Dining, Kitchen, 2 Toilets, Pooja, Utility &amp; Balcony</li>
+          <li>Room dimensions shown are as per the builder's brochure — verify on-site before fabrication</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 — FALL CEILING -->
+  <section class="room" id="ceiling">
+    <div class="room-head">
+      <div class="step-badge">01</div>
+      <h2>Fall Ceiling <br><span class="tag">Living &amp; Common Areas</span></h2>
+    </div>
+    <div class="room-body">
+      <div class="gallery triple">
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Fall ceiling 1.jpg','Fall Ceiling — Option 1')">
+            <img src="My interior selected images/upscaled/Fall ceiling 1.jpg" alt="Fall ceiling design option 1">
+          </div>
+          <figcaption>Option 1</figcaption>
+        </figure>
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Fall ceiling 2.jpg','Fall Ceiling — Option 2')">
+            <img src="My interior selected images/upscaled/Fall ceiling 2.jpg" alt="Fall ceiling design option 2">
+          </div>
+          <figcaption>Option 2</figcaption>
+        </figure>
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Fall ceiling 3.jpg','Fall Ceiling — Option 3')">
+            <img src="My interior selected images/upscaled/Fall ceiling 3.jpg" alt="Fall ceiling design option 3">
+          </div>
+          <figcaption>Option 3</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h3>What to build</h3>
+        <p>Three reference styles for the gypsum fall (false) ceiling — pick the one that best suits the
+        living area proportions, or use as a base to adapt.</p>
+        <ul>
+          <li>Gypsum board false ceiling with stepped / multi-level profile as shown</li>
+          <li>Recessed LED cove lighting along the perimeter step</li>
+          <li>Leave provision for ceiling fan &amp; main light fitting at center</li>
+          <li>Finish: smooth white / off-white POP finish, ready for paint</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — TV UNIT -->
+  <section class="room" id="tv-unit">
+    <div class="room-head">
+      <div class="step-badge">02</div>
+      <h2>TV Unit Wall <br><span class="tag">Living Hall</span></h2>
+    </div>
+    <div class="room-body">
+      <div class="gallery single">
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Hall TV Unit (back ground will be a wall paper).jpg','TV Unit Wall — Reference')">
+            <img src="My interior selected images/upscaled/Hall TV Unit (back ground will be a wall paper).jpg" alt="Living hall TV unit with wooden shelving">
+          </div>
+          <figcaption>Reference — TV unit with open shelving</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h3>What to build</h3>
+        <p>Wall-mounted wooden-finish TV console with tall open shelving units flanking either side.</p>
+        <ul>
+          <li>Floating wooden-finish TV unit / console, wall-mounted (no legs touching floor)</li>
+          <li>Tall vertical shelving towers on either side for decor, books &amp; plants</li>
+          <li>Built-in warm LED strip lighting inside shelves and under the console</li>
+          <li>Wall behind TV to be finished with <strong>wallpaper</strong> (textured / fluted panel look as shown)</li>
+          <li>Leave concealed wiring provision for TV power &amp; set-top box behind panel</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — SOFA BACK WALL -->
+  <section class="room" id="sofa-wall">
+    <div class="room-head">
+      <div class="step-badge">03</div>
+      <h2>Sofa Back Wall <br><span class="tag">Living Hall</span></h2>
+    </div>
+    <div class="room-body">
+      <div class="gallery single">
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Hall SOfa back side wall Design.jpg','Sofa Back Wall — Reference')">
+            <img src="My interior selected images/upscaled/Hall SOfa back side wall Design.jpg" alt="Sofa backrest wall design">
+          </div>
+          <figcaption>Reference — accent wall behind sofa</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h3>What to build</h3>
+        <p>Decorative accent treatment for the wall directly behind the living room sofa, facing the TV unit.</p>
+        <ul>
+          <li>Match panel design / texture style to the reference image</li>
+          <li>Coordinate finish tone with TV unit wall for a balanced room palette</li>
+          <li>Keep wall fittings minimal — focus on texture &amp; paint/panel finish</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — DINING CEILING -->
+  <section class="room" id="dining-ceiling">
+    <div class="room-head">
+      <div class="step-badge">04</div>
+      <h2>Dining Ceiling Art <br><span class="tag">Dining Area</span></h2>
+    </div>
+    <div class="room-body">
+      <div class="gallery single">
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Dining Hall cieling art.jpg','Dining Ceiling Art — Reference')">
+            <img src="My interior selected images/upscaled/Dining Hall cieling art.jpg" alt="Dining hall ceiling art design">
+          </div>
+          <figcaption>Reference — dining ceiling feature</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h3>What to build</h3>
+        <p>A decorative ceiling feature above the dining table, distinct from the main living fall ceiling.</p>
+        <ul>
+          <li>Ceiling art / design panel centered over the dining table</li>
+          <li>Coordinate with pendant or hanging light fixture above the table</li>
+          <li>Keep proportion in scale with the dining table footprint</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 — KITCHEN -->
+  <section class="room" id="kitchen">
+    <div class="room-head">
+      <div class="step-badge">05</div>
+      <h2>Kitchen Cabinets &amp; Layout <br><span class="tag">Kitchen</span></h2>
+    </div>
+    <div class="room-body">
+      <div class="gallery double">
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Kitchen 1.jpg','Kitchen — Main Working Wall')">
+            <img src="My interior selected images/upscaled/Kitchen 1.jpg" alt="Kitchen cabinet reference 1">
+          </div>
+          <figcaption>Reference — main kitchen wall</figcaption>
+        </figure>
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Kitchen  opposite.jpg','Kitchen — Opposite Wall / Counter')">
+            <img src="My interior selected images/upscaled/Kitchen  opposite.jpg" alt="Kitchen opposite wall reference">
+          </div>
+          <figcaption>Reference — opposite wall / counter</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h3>What to build</h3>
+        <p>Two views of the kitchen — main working wall and the opposite counter — to be read together for full layout.</p>
+        <ul>
+          <li>Base cabinets + wall-mounted overhead cabinets, modular style as shown</li>
+          <li>Countertop with sink cutout on main working wall</li>
+          <li>Provision for chimney/hob above cooking counter</li>
+          <li>Storage cabinets on opposite wall for additional kitchen storage / appliances</li>
+          <li>Finish: laminate or similar low-maintenance cabinet finish matching reference tone</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 — POOJA -->
+  <section class="room" id="pooja">
+    <div class="room-head">
+      <div class="step-badge">06</div>
+      <h2>Pooja Unit <br><span class="tag">Left of Kitchen</span></h2>
+    </div>
+    <div class="room-body">
+      <div class="gallery single">
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Pooja left to kitchen.jpg','Pooja Unit — Reference')">
+            <img src="My interior selected images/upscaled/Pooja left to kitchen.jpg" alt="Pooja unit design located left of kitchen">
+          </div>
+          <figcaption>Reference — pooja unit placement</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h3>What to build</h3>
+        <p>Compact pooja (prayer) unit positioned in the niche to the left of the kitchen entrance.</p>
+        <ul>
+          <li>Wall-mounted or floor-standing pooja unit sized to fit the available niche/wall</li>
+          <li>Wooden finish with carved / textured front panel as shown</li>
+          <li>Small shelf or ledge for idols/lamp; consider a small door or shutter for storage below</li>
+          <li>Coordinate finish with adjacent kitchen &amp; crockery unit</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 — CROCKERY UNIT -->
+  <section class="room" id="crockery">
+    <div class="room-head">
+      <div class="step-badge">07</div>
+      <h2>Crockery Unit <br><span class="tag">Near Pooja Area</span></h2>
+    </div>
+    <div class="room-body">
+      <div class="gallery single">
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Crokery Unit at Pooja place.jpg','Crockery Unit — Reference')">
+            <img src="My interior selected images/upscaled/Crokery Unit at Pooja place.jpg" alt="Crockery unit near pooja area">
+          </div>
+          <figcaption>Reference — crockery storage unit</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h3>What to build</h3>
+        <p>Crockery storage unit positioned adjacent to the pooja area, sharing the same wall run.</p>
+        <ul>
+          <li>Closed/glass-shutter cabinets for crockery &amp; display items</li>
+          <li>Match cabinet height and finish with the pooja unit for a continuous wall look</li>
+          <li>Mix of open display shelves and closed storage as shown in reference</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 — MASTER WARDROBE -->
+  <section class="room" id="master-wardrobe">
+    <div class="room-head">
+      <div class="step-badge">08</div>
+      <h2>Wardrobe <br><span class="tag">Master Bedroom</span></h2>
+    </div>
+    <div class="room-body">
+      <div class="gallery single">
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Master Bedroommwardroab.jpg','Master Bedroom Wardrobe — Reference')">
+            <img src="My interior selected images/upscaled/Master Bedroommwardroab.jpg" alt="Master bedroom wardrobe design">
+          </div>
+          <figcaption>Reference — master bedroom wardrobe</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h3>What to build</h3>
+        <p>Full-height built-in wardrobe for the master bedroom, sized to the available wall span.</p>
+        <ul>
+          <li>Floor-to-ceiling sliding or hinged shutter wardrobe, finish as per reference</li>
+          <li>Internal layout: hanging space, shelves, and drawer units</li>
+          <li>Handle-less / minimal hardware look if matching reference style</li>
+          <li>Loft storage above wardrobe if ceiling height permits</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 — DRESSING TABLE -->
+  <section class="room" id="dressing-table">
+    <div class="room-head">
+      <div class="step-badge">09</div>
+      <h2>Dressing Table <br><span class="tag">Master Bedroom</span></h2>
+    </div>
+    <div class="room-body">
+      <div class="gallery single">
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Master bedroom Dressing table.jpg','Dressing Table — Reference')">
+            <img src="My interior selected images/upscaled/Master bedroom Dressing table.jpg" alt="Master bedroom dressing table design">
+          </div>
+          <figcaption>Reference — dressing table unit</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h3>What to build</h3>
+        <p>Dressing table unit, either standalone or integrated alongside the wardrobe wall.</p>
+        <ul>
+          <li>Mirror panel with integrated vanity lighting (LED strip / spot lights)</li>
+          <li>Drawer storage below counter for cosmetics/accessories</li>
+          <li>Finish &amp; trim to coordinate with the master wardrobe</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 — KIDS WARDROBE -->
+  <section class="room" id="kids-wardrobe">
+    <div class="room-head">
+      <div class="step-badge">10</div>
+      <h2>Wardrobe <br><span class="tag">Kids Room</span></h2>
+    </div>
+    <div class="room-body">
+      <div class="gallery single">
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/kids bedroom Wardroab.jpg','Kids Room Wardrobe — Reference')">
+            <img src="My interior selected images/upscaled/kids bedroom Wardroab.jpg" alt="Kids bedroom wardrobe design">
+          </div>
+          <figcaption>Reference — kids room wardrobe</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h3>What to build</h3>
+        <p>Built-in wardrobe for the kids' room, sized to fit the room's wall layout.</p>
+        <ul>
+          <li>Sliding or hinged shutter wardrobe with mixed open/closed compartments</li>
+          <li>Brighter or playful finish tone acceptable, per reference</li>
+          <li>Lower shelves accessible for a child's everyday use</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 — KIDS STUDY UNIT -->
+  <section class="room" id="kids-study">
+    <div class="room-head">
+      <div class="step-badge">11</div>
+      <h2>Study Unit <br><span class="tag">Kids Room</span></h2>
+    </div>
+    <div class="room-body">
+      <div class="gallery single">
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/kids roon Steady Unit.jpg','Study Unit — Reference')">
+            <img src="My interior selected images/upscaled/kids roon Steady Unit.jpg" alt="Kids room study unit design">
+          </div>
+          <figcaption>Reference — study desk unit</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h3>What to build</h3>
+        <p>Built-in study desk unit for the kids' room, positioned to use natural light if possible.</p>
+        <ul>
+          <li>Wall-mounted or built-in study desk with storage drawers/shelves above or below</li>
+          <li>Provision for table lamp / study light and power socket near desk</li>
+          <li>Finish to coordinate with kids room wardrobe</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 — WASH BASIN -->
+  <section class="room" id="wash-basin">
+    <div class="room-head">
+      <div class="step-badge">12</div>
+      <h2>Wash Basin &amp; Storage <br><span class="tag">Common Area</span></h2>
+    </div>
+    <div class="room-body">
+      <div class="gallery single">
+        <figure>
+          <div class="img-frame" onclick="openLightbox('My interior selected images/upscaled/Wash Basin with wardroabs.jpg','Wash Basin &amp; Storage — Reference')">
+            <img src="My interior selected images/upscaled/Wash Basin with wardroabs.jpg" alt="Common wash basin area with wardrobe storage">
+          </div>
+          <figcaption>Reference — wash basin with storage units</figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h3>What to build</h3>
+        <p>Common wash basin counter combined with flanking storage units, for the common/utility area.</p>
+        <ul>
+          <li>Counter-mounted wash basin with cabinet storage below</li>
+          <li>Mirror with light fixture above basin</li>
+          <li>Side wardrobe/storage units matched in finish to the basin counter</li>
+          <li>Ensure plumbing provisions (water inlet/outlet) align with counter cutout</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="stamp">End of Walkthrough</div>
+  <p>
+    Prepared as a working reference for Anuhar Towers, Block B · Flat No. 902 (2BHK).
+    All images are design references gathered by the homeowner — confirm exact dimensions
+    on-site against the floor plan before fabrication. RERA No. P02400002613.
+  </p>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-close" onclick="closeLightbox(event)">&times;</div>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<script>
+  function openLightbox(src, caption){
+    var lb = document.getElementById('lightbox');
+    var img = document.getElementById('lightbox-img');
+    var cap = document.getElementById('lightbox-caption');
+    img.src = src;
+    img.alt = caption || '';
+    cap.textContent = caption || '';
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e){
+    var lb = document.getElementById('lightbox');
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+    document.getElementById('lightbox-img').src = '';
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>

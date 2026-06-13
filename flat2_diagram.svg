@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="900" height="700" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="24" font-weight="bold" fill="#2d2d2d">Anuhar Towers - Block B, Flat No. 902 (2BHK)</text>
+  <text x="450" y="58" text-anchor="middle" font-size="13" fill="#777">Typical Floor Plan (Redrawn for clarity)</text>
+
+  <!-- North arrow -->
+  <g transform="translate(820,40)">
+    <circle cx="0" cy="0" r="18" fill="none" stroke="#333" stroke-width="1.5"/>
+    <line x1="0" y1="10" x2="0" y2="-12" stroke="#333" stroke-width="1.5"/>
+    <polygon points="0,-16 -5,-6 5,-6" fill="#333"/>
+    <text x="0" y="32" text-anchor="middle" font-size="12" font-weight="bold">N</text>
+  </g>
+
+  <!-- ===================== FLOOR PLAN ===================== -->
+  <g transform="translate(60,90)">
+
+    <!-- Outer building outline -->
+    <rect x="0" y="0" width="520" height="430" fill="none" stroke="#333" stroke-width="4"/>
+
+    <!-- Bedroom 1 (top-left) 15'9" x 12' -->
+    <rect x="0" y="0" width="260" height="160" fill="#fdf6e3" stroke="#888" stroke-width="2"/>
+    <text x="130" y="75" text-anchor="middle" font-size="16" font-weight="bold">Bedroom 1</text>
+    <text x="130" y="95" text-anchor="middle" font-size="14" fill="#555">15'9" x 12'</text>
+
+    <!-- Living (top-right) 15'12 -->
+    <rect x="260" y="0" width="260" height="160" fill="#e8f0fe" stroke="#888" stroke-width="2"/>
+    <text x="390" y="75" text-anchor="middle" font-size="16" font-weight="bold">Living Room</text>
+    <text x="390" y="95" text-anchor="middle" font-size="14" fill="#555">15' x 12'</text>
+
+    <!-- Toilet 1 (left middle) 8'10 x 4'9 -->
+    <rect x="0" y="160" width="150" height="90" fill="#e6f4ea" stroke="#888" stroke-width="2"/>
+    <text x="75" y="200" text-anchor="middle" font-size="14" font-weight="bold">Toilet 1</text>
+    <text x="75" y="218" text-anchor="middle" font-size="12" fill="#555">8'10" x 4'9"</text>
+
+    <!-- Dining (center) 10' x 13'5 -->
+    <rect x="150" y="160" width="160" height="180" fill="#fff7e6" stroke="#888" stroke-width="2"/>
+    <text x="230" y="245" text-anchor="middle" font-size="16" font-weight="bold">Dining</text>
+    <text x="230" y="265" text-anchor="middle" font-size="14" fill="#555">10' x 13'5"</text>
+
+    <!-- Puja (small strip) -->
+    <rect x="310" y="160" width="30" height="70" fill="#f3e6f7" stroke="#888" stroke-width="2"/>
+    <text x="325" y="200" text-anchor="middle" font-size="10" font-weight="bold" transform="rotate(-90 325 200)">PUJA</text>
+
+    <!-- Toilet 2 (right) 8' x 4'3 -->
+    <rect x="340" y="160" width="180" height="70" fill="#e6f4ea" stroke="#888" stroke-width="2"/>
+    <text x="430" y="190" text-anchor="middle" font-size="14" font-weight="bold">Toilet 2</text>
+    <text x="430" y="208" text-anchor="middle" font-size="12" fill="#555">8' x 4'3"</text>
+
+    <!-- Bedroom 2 (right bottom) 10' x 11' -->
+    <rect x="310" y="230" width="210" height="110" fill="#fdf6e3" stroke="#888" stroke-width="2"/>
+    <text x="415" y="280" text-anchor="middle" font-size="16" font-weight="bold">Bedroom 2</text>
+    <text x="415" y="300" text-anchor="middle" font-size="14" fill="#555">10' x 11'</text>
+
+    <!-- Toilet 1 lower extension fills remaining height -->
+    <rect x="0" y="250" width="150" height="90" fill="#e6f4ea" stroke="#888" stroke-width="2"/>
+
+    <!-- Kitchen (bottom-left) 7'2 x 10'6 -->
+    <rect x="40" y="340" width="230" height="90" fill="#fde8e8" stroke="#888" stroke-width="2"/>
+    <text x="155" y="385" text-anchor="middle" font-size="16" font-weight="bold">Kitchen</text>
+    <text x="155" y="405" text-anchor="middle" font-size="14" fill="#555">7'2" x 10'6"</text>
+
+    <!-- Utility (left bottom strip) 3'11 x 11'3 -->
+    <rect x="0" y="340" width="40" height="90" fill="#ececec" stroke="#888" stroke-width="2"/>
+    <text x="20" y="390" text-anchor="middle" font-size="9" font-weight="bold" transform="rotate(-90 20 390)">UTILITY 3'11"x11'3"</text>
+
+    <!-- Balcony (bottom, attached to dining/kitchen) 10' x 6'9 -->
+    <rect x="270" y="340" width="160" height="90" fill="#e0ddd3" stroke="#888" stroke-width="2"/>
+    <text x="350" y="385" text-anchor="middle" font-size="16" font-weight="bold">Balcony</text>
+    <text x="350" y="405" text-anchor="middle" font-size="14" fill="#555">10' x 6'9"</text>
+
+    <!-- Bedroom 2 extension to fill remaining bottom-right -->
+    <rect x="430" y="340" width="90" height="90" fill="#fdf6e3" stroke="#888" stroke-width="2"/>
+
+    <!-- Entrance door marker -->
+    <rect x="240" y="-6" width="40" height="12" fill="#a33" />
+    <text x="260" y="-12" text-anchor="middle" font-size="11" fill="#a33" font-weight="bold">ENTRY</text>
+
+  </g>
+
+  <!-- ===================== AREA STATEMENT TABLE ===================== -->
+  <g transform="translate(620,90)">
+    <rect x="0" y="0" width="240" height="260" fill="#f7f7f7" stroke="#ccc"/>
+    <text x="120" y="28" text-anchor="middle" font-size="16" font-weight="bold">Area Statement</text>
+    <text x="120" y="46" text-anchor="middle" font-size="11" fill="#777">(Flat No. 902, Block B - 2BHK)</text>
+
+    <g font-size="13">
+      <text x="15" y="75" font-weight="bold">Salable Area</text>
+      <text x="225" y="75" text-anchor="end">1316 sq.ft</text>
+
+      <text x="15" y="100" font-weight="bold">Carpet Area</text>
+      <text x="225" y="100" text-anchor="end">838 sq.ft</text>
+
+      <text x="15" y="125" font-weight="bold">Utility Area</text>
+      <text x="225" y="125" text-anchor="end">36 sq.ft</text>
+
+      <text x="15" y="150" font-weight="bold">Balcony</text>
+      <text x="225" y="150" text-anchor="end">49 sq.ft</text>
+
+      <text x="15" y="175" font-weight="bold">Wall Area</text>
+      <text x="225" y="175" text-anchor="end">89 sq.ft</text>
+
+      <line x1="15" y1="190" x2="225" y2="190" stroke="#bbb"/>
+
+      <text x="15" y="215" font-weight="bold" font-size="14">SBUP</text>
+      <text x="225" y="215" text-anchor="end" font-size="14" font-weight="bold">1012 sq.ft</text>
+    </g>
+
+    <text x="120" y="245" text-anchor="middle" font-size="10" fill="#999">SBUP = Super Built-Up Area</text>
+  </g>
+
+  <!-- Room legend -->
+  <g transform="translate(620,370)" font-size="12">
+    <text x="0" y="0" font-weight="bold" font-size="14">Room Schedule</text>
+    <text x="0" y="25">Bedroom 1: 15'9" x 12'</text>
+    <text x="0" y="45">Bedroom 2: 10' x 11'</text>
+    <text x="0" y="65">Living Room: 15' x 12'</text>
+    <text x="0" y="85">Dining: 10' x 13'5"</text>
+    <text x="0" y="105">Kitchen: 7'2" x 10'6"</text>
+    <text x="0" y="125">Toilet 1: 8'10" x 4'9"</text>
+    <text x="0" y="145">Toilet 2: 8' x 4'3"</text>
+    <text x="0" y="165">Balcony: 10' x 6'9"</text>
+    <text x="0" y="185">Utility: 3'11" x 11'3"</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="450" y="680" text-anchor="middle" font-size="11" fill="#999">Source: Anuhar Homes Pvt Ltd - "Anuhar Towers" Brochure, Block B Typical Floor Plan | RERA No. P02400002613</text>
+</svg>
